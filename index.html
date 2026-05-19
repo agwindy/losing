@@ -463,12 +463,16 @@ input:focus{
 
 <div class="actions">
 
-  <button onclick="downloadHTML()">
-    Export HTML
+  <button onclick="exportTXT()">
+    Export TXT
   </button>
 
-  <button onclick="downloadPDF()">
+  <button onclick="exportPDFRingkasan()">
     Export PDF
+  </button>
+
+  <button onclick="exportGambar()">
+    Export Gambar
   </button>
 
 </div>
@@ -481,80 +485,122 @@ input:focus{
 
 <script>
 
-/* ================= EXPORT HTML ================= */
+/* ================= RINGKASAN EXPORT ================= */
 
-function downloadHTML(){
+function getRingkasanData(){
 
-  const htmlContent =
-    document.documentElement.outerHTML;
+return `
+==============================
+PENERIMAAN BBM SPBU 3417603
+==============================
 
-  const blob =
-    new Blob(
-      [htmlContent],
-      {type:"text/html"}
-    );
+===== PENERIMAAN BBM =====
 
-  const link =
-    document.createElement("a");
+PERTAMAX
+Stok Awal : ${document.getElementById("stokSebelumPX").value || 0}
+DO : ${document.getElementById("doPX").value || 0}
+Stok Akhir : ${document.getElementById("stokAkhirPX").innerText}
+Stok Aktual : ${document.getElementById("stokAktualPX").value || 0}
+Selisih : ${document.getElementById("selisihPX").innerText}
+Keterangan : ${document.getElementById("ketPX").innerText}
 
-  link.href =
-    URL.createObjectURL(blob);
+PERTALITE
+Stok Awal : ${document.getElementById("stokSebelumPL").value || 0}
+DO : ${document.getElementById("doPL").value || 0}
+Stok Akhir : ${document.getElementById("stokAkhirPL").innerText}
+Stok Aktual : ${document.getElementById("stokAktualPL").value || 0}
+Selisih : ${document.getElementById("selisihPL").innerText}
+Keterangan : ${document.getElementById("ketPL").innerText}
 
-  link.download =
-    "PENERIMAAN_BBM_SPBU.html";
+===== GANTUNGAN POS SYSTEM =====
 
-  document.body.appendChild(link);
+PERTAMAX
+Stok Awal : ${document.getElementById("stokAwalPosPX").value || 0}
+Penjualan : ${document.getElementById("gantunganPX").value || 0}
+Stok Akhir : ${document.getElementById("stokAkhirPosPX").innerText}
+Digantung : ${document.getElementById("hasilGantungPX").innerText}
 
-  link.click();
+PERTALITE
+Stok Awal : ${document.getElementById("stokAwalPosPL").value || 0}
+Penjualan : ${document.getElementById("gantunganPL").value || 0}
+Stok Akhir : ${document.getElementById("stokAkhirPosPL").innerText}
+Digantung : ${document.getElementById("hasilGantungPL").innerText}
 
-  document.body.removeChild(link);
+===== SISA GANTUNGAN =====
+
+PERTAMAX
+Stok Awal : ${document.getElementById("stokKunciPX").innerText}
+Stok Akhir : ${document.getElementById("stokAkhirSisaPX").value || 0}
+Sisa : ${document.getElementById("sisaGantungPX").innerText}
+
+PERTALITE
+Stok Awal : ${document.getElementById("stokKunciPL").innerText}
+Stok Akhir : ${document.getElementById("stokAkhirSisaPL").value || 0}
+Sisa : ${document.getElementById("sisaGantungPL").innerText}
+`;
+
+}
+
+/* ================= EXPORT TXT ================= */
+
+function exportTXT(){
+
+const text = getRingkasanData();
+
+const blob = new Blob(
+[text],
+{type:"text/plain"}
+);
+
+const link = document.createElement("a");
+
+link.href = URL.createObjectURL(blob);
+
+link.download = "RANGKUMAN_BBM_SPBU.txt";
+
+link.click();
 
 }
 
 /* ================= EXPORT PDF ================= */
 
-async function downloadPDF(){
+function exportPDFRingkasan(){
 
-  const { jsPDF } = window.jspdf;
+const { jsPDF } = window.jspdf;
 
-  const element =
-    document.body;
+const pdf = new jsPDF();
 
-  const canvas =
-    await html2canvas(element,{
-      scale:2,
-      useCORS:true
-    });
+const text = getRingkasanData();
 
-  const imgData =
-    canvas.toDataURL("image/png");
+const lines = pdf.splitTextToSize(text,180);
 
-  const pdf =
-    new jsPDF(
-      "p",
-      "mm",
-      "a4"
-    );
+pdf.setFont("courier");
 
-  const pdfWidth =
-    pdf.internal.pageSize.getWidth();
+pdf.setFontSize(10);
 
-  const pdfHeight =
-    (canvas.height * pdfWidth)
-    / canvas.width;
+pdf.text(lines,10,10);
 
-  pdf.addImage(
-    imgData,
-    "PNG",
-    0,
-    0,
-    pdfWidth,
-    pdfHeight
-  );
+pdf.save("RANGKUMAN_BBM_SPBU.pdf");
 
-  pdf.save(
-    "PENERIMAAN_BBM_SPBU.pdf"
-  );
+}
+
+/* ================= EXPORT GAMBAR ================= */
+
+async function exportGambar(){
+
+const canvas = await html2canvas(document.body,{
+scale:2
+});
+
+const image = canvas.toDataURL("image/png");
+
+const link = document.createElement("a");
+
+link.href = image;
+
+link.download = "RANGKUMAN_BBM_SPBU.png";
+
+link.click();
 
 }
 
@@ -562,95 +608,95 @@ async function downloadPDF(){
 
 function hitungBBM(){
 
-  let stokSebelumPX =
-    parseFloat(document.getElementById("stokSebelumPX").value) || 0;
+let stokSebelumPX =
+parseFloat(document.getElementById("stokSebelumPX").value) || 0;
 
-  let doPX =
-    parseFloat(document.getElementById("doPX").value) || 0;
+let doPX =
+parseFloat(document.getElementById("doPX").value) || 0;
 
-  let stokAktualPX =
-    parseFloat(document.getElementById("stokAktualPX").value) || 0;
+let stokAktualPX =
+parseFloat(document.getElementById("stokAktualPX").value) || 0;
 
-  let stokAkhirPX = stokSebelumPX + doPX;
+let stokAkhirPX = stokSebelumPX + doPX;
 
-  let selisihPX = stokAktualPX - stokAkhirPX;
+let selisihPX = stokAktualPX - stokAkhirPX;
 
-  document.getElementById("stokAkhirPX").innerText =
-    stokAkhirPX.toFixed(2);
+document.getElementById("stokAkhirPX").innerText =
+stokAkhirPX.toFixed(2);
 
-  document.getElementById("selisihPX").innerText =
-    selisihPX.toFixed(2);
+document.getElementById("selisihPX").innerText =
+selisihPX.toFixed(2);
 
-  document.getElementById("stokAktualTampilPX").innerText =
-    stokAktualPX.toFixed(2);
+document.getElementById("stokAktualTampilPX").innerText =
+stokAktualPX.toFixed(2);
 
-  document.getElementById("stokKunciPX").innerText =
-    stokAktualPX.toFixed(2);
+document.getElementById("stokKunciPX").innerText =
+stokAktualPX.toFixed(2);
 
-  if(selisihPX > 0){
+if(selisihPX > 0){
 
-    document.getElementById("ketPX").innerHTML =
-      "<span class='plus'>PLUS</span>";
+document.getElementById("ketPX").innerHTML =
+"<span class='plus'>PLUS</span>";
 
-  }
-  else if(selisihPX < 0){
+}
+else if(selisihPX < 0){
 
-    document.getElementById("ketPX").innerHTML =
-      "<span class='minus'>MINUS</span>";
+document.getElementById("ketPX").innerHTML =
+"<span class='minus'>MINUS</span>";
 
-  }
-  else{
+}
+else{
 
-    document.getElementById("ketPX").innerHTML =
-      "<span class='balance'>BALANCE</span>";
+document.getElementById("ketPX").innerHTML =
+"<span class='balance'>BALANCE</span>";
 
-  }
+}
 
-  let stokSebelumPL =
-    parseFloat(document.getElementById("stokSebelumPL").value) || 0;
+let stokSebelumPL =
+parseFloat(document.getElementById("stokSebelumPL").value) || 0;
 
-  let doPL =
-    parseFloat(document.getElementById("doPL").value) || 0;
+let doPL =
+parseFloat(document.getElementById("doPL").value) || 0;
 
-  let stokAktualPL =
-    parseFloat(document.getElementById("stokAktualPL").value) || 0;
+let stokAktualPL =
+parseFloat(document.getElementById("stokAktualPL").value) || 0;
 
-  let stokAkhirPL = stokSebelumPL + doPL;
+let stokAkhirPL = stokSebelumPL + doPL;
 
-  let selisihPL = stokAktualPL - stokAkhirPL;
+let selisihPL = stokAktualPL - stokAkhirPL;
 
-  document.getElementById("stokAkhirPL").innerText =
-    stokAkhirPL.toFixed(2);
+document.getElementById("stokAkhirPL").innerText =
+stokAkhirPL.toFixed(2);
 
-  document.getElementById("selisihPL").innerText =
-    selisihPL.toFixed(2);
+document.getElementById("selisihPL").innerText =
+selisihPL.toFixed(2);
 
-  document.getElementById("stokAktualTampilPL").innerText =
-    stokAktualPL.toFixed(2);
+document.getElementById("stokAktualTampilPL").innerText =
+stokAktualPL.toFixed(2);
 
-  document.getElementById("stokKunciPL").innerText =
-    stokAktualPL.toFixed(2);
+document.getElementById("stokKunciPL").innerText =
+stokAktualPL.toFixed(2);
 
-  if(selisihPL > 0){
+if(selisihPL > 0){
 
-    document.getElementById("ketPL").innerHTML =
-      "<span class='plus'>PLUS</span>";
+document.getElementById("ketPL").innerHTML =
+"<span class='plus'>PLUS</span>";
 
-  }
-  else if(selisihPL < 0){
+}
+else if(selisihPL < 0){
 
-    document.getElementById("ketPL").innerHTML =
-      "<span class='minus'>MINUS</span>";
+document.getElementById("ketPL").innerHTML =
+"<span class='minus'>MINUS</span>";
 
-  }
-  else{
+}
+else{
 
-    document.getElementById("ketPL").innerHTML =
-      "<span class='balance'>BALANCE</span>";
+document.getElementById("ketPL").innerHTML =
+"<span class='balance'>BALANCE</span>";
 
-  }
+}
 
-  hitungPOS();
+hitungPOS();
 
 }
 
@@ -658,59 +704,59 @@ function hitungBBM(){
 
 function hitungPOS(){
 
-  let stokAwalPX =
-    parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
+let stokAwalPX =
+parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
 
-  let penjualanPX =
-    parseFloat(document.getElementById("gantunganPX").value) || 0;
+let penjualanPX =
+parseFloat(document.getElementById("gantunganPX").value) || 0;
 
-  let stokAktualPX =
-    parseFloat(document.getElementById("stokAktualTampilPX").innerText) || 0;
+let stokAktualPX =
+parseFloat(document.getElementById("stokAktualTampilPX").innerText) || 0;
 
-  let stokAkhirPX = stokAwalPX - penjualanPX;
+let stokAkhirPX = stokAwalPX - penjualanPX;
 
-  document.getElementById("stokAkhirPosPX").innerText =
-    stokAkhirPX.toFixed(2);
+document.getElementById("stokAkhirPosPX").innerText =
+stokAkhirPX.toFixed(2);
 
-  let diGantungPX = stokAktualPX - stokAkhirPX;
+let diGantungPX = stokAktualPX - stokAkhirPX;
 
-  document.getElementById("hasilGantungPX").innerText =
-    diGantungPX.toFixed(2);
+document.getElementById("hasilGantungPX").innerText =
+diGantungPX.toFixed(2);
 
-  let stokAkhirSisaPX =
-    parseFloat(document.getElementById("stokAkhirSisaPX").value) || 0;
+let stokAkhirSisaPX =
+parseFloat(document.getElementById("stokAkhirSisaPX").value) || 0;
 
-  let sisaPX = stokAktualPX - stokAkhirSisaPX;
+let sisaPX = stokAktualPX - stokAkhirSisaPX;
 
-  document.getElementById("sisaGantungPX").innerText =
-    sisaPX.toFixed(2);
+document.getElementById("sisaGantungPX").innerText =
+sisaPX.toFixed(2);
 
-  let stokAwalPL =
-    parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
+let stokAwalPL =
+parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
 
-  let penjualanPL =
-    parseFloat(document.getElementById("gantunganPL").value) || 0;
+let penjualanPL =
+parseFloat(document.getElementById("gantunganPL").value) || 0;
 
-  let stokAktualPL =
-    parseFloat(document.getElementById("stokAktualTampilPL").innerText) || 0;
+let stokAktualPL =
+parseFloat(document.getElementById("stokAktualTampilPL").innerText) || 0;
 
-  let stokAkhirPL = stokAwalPL - penjualanPL;
+let stokAkhirPL = stokAwalPL - penjualanPL;
 
-  document.getElementById("stokAkhirPosPL").innerText =
-    stokAkhirPL.toFixed(2);
+document.getElementById("stokAkhirPosPL").innerText =
+stokAkhirPL.toFixed(2);
 
-  let diGantungPL = stokAktualPL - stokAkhirPL;
+let diGantungPL = stokAktualPL - stokAkhirPL;
 
-  document.getElementById("hasilGantungPL").innerText =
-    diGantungPL.toFixed(2);
+document.getElementById("hasilGantungPL").innerText =
+diGantungPL.toFixed(2);
 
-  let stokAkhirSisaPL =
-    parseFloat(document.getElementById("stokAkhirSisaPL").value) || 0;
+let stokAkhirSisaPL =
+parseFloat(document.getElementById("stokAkhirSisaPL").value) || 0;
 
-  let sisaPL = stokAktualPL - stokAkhirSisaPL;
+let sisaPL = stokAktualPL - stokAkhirSisaPL;
 
-  document.getElementById("sisaGantungPL").innerText =
-    sisaPL.toFixed(2);
+document.getElementById("sisaGantungPL").innerText =
+sisaPL.toFixed(2);
 
 }
 

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penerimaan BBM - SPBU 3417603</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #0056b3;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #0056b3;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-weight: bold;
+        }
+        .produk-section {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .pertamax-title {
+            color: #cc0000;
+            border-left: 5px solid #cc0000;
+            padding-left: 10px;
+            margin-top: 0;
+        }
+        .pertalite-title {
+            color: #008000;
+            border-left: 5px solid #008000;
+            padding-left: 10px;
+            margin-top: 0;
+        }
+        .grid-input {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .form-group input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #0056b3;
+        }
+        .readonly-input {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        .status-badge {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+            text-align: center;
+        }
+        .status-plus {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status-minus {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .status-balance {
+            background-color: #e2e3e5;
+            color: #383d41;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>SISTEM MONITORING PENERIMAAN BBM</h1>
+        <p>SPBU 3417603</p>
+    </div>
+
+    <!-- SECTION PERTAMAX -->
+    <div class="produk-section">
+        <h2 class="pertamax-title">PERTAMAX</h2>
+        <div class="grid-input">
+            <div class="form-group">
+                <label>Stok Awal (Liter)</label>
+                <input type="number" id="awal_pertamax" oninput="hitungPertamax()" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label>Delivery Order / DO (Liter)</label>
+                <input type="number" id="do_pertamax" oninput="hitungPertamax()" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label>Stok Akhir Sistem (Otomatis)</label>
+                <input type="number" id="akhir_pertamax" class="readonly-input" readonly value="0">
+            </div>
+            <div class="form-group">
+                <label>Stok Aktual / Fisik (Liter)</label>
+                <input type="number" id="aktual_pertamax" oninput="hitungPertamax()" placeholder="0">
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>Keterangan Selisih:</strong> <span id="selisih_pertamax">0 Liter</span>
+            <div id="badge_pertamax" class="status-badge status-balance">Balance</div>
+        </div>
+    </div>
+
+    <!-- SECTION PERTALITE -->
+    <div class="produk-section">
+        <h2 class="pertalite-title">PERTALITE</h2>
+        <div class="grid-input">
+            <div class="form-group">
+                <label>Stok Awal (Liter)</label>
+                <input type="number" id="awal_pertalite" oninput="hitungPertalite()" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label>Delivery Order / DO (Liter)</label>
+                <input type="number" id="do_pertalite" oninput="hitungPertalite()" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label>Stok Akhir Sistem (Otomatis)</label>
+                <input type="number" id="akhir_pertalite" class="readonly-input" readonly value="0">
+            </div>
+            <div class="form-group">
+                <label>Stok Aktual / Fisik (Liter)</label>
+                <input type="number" id="aktual_pertalite" oninput="hitungPertalite()" placeholder="0">
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <strong>Keterangan Selisih:</strong> <span id="selisih_pertalite">0 Liter</span>
+            <div id="badge_pertalite" class="status-badge status-balance">Balance</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 SPBU 3417603 | Real-time KaIkulasi Penerimaan
+    </div>
+</div>
+
+<script>
+    function hitungPertamax() {
+        // Ambil nilai input
+        let awal = parseFloat(document.getElementById('awal_pertamax').value) || 0;
+        let do_bbm = parseFloat(document.getElementById('do_pertamax').value) || 0;
+        let aktual = parseFloat(document.getElementById('aktual_pertamax').value) || 0;
+
+        // Rumus 1: Stok Akhir Sistem = Stok Awal + DO
+        let akhirSistem = awal + do_bbm;
+        document.getElementById('akhir_pertamax').value = akhirSistem;
+
+        // Rumus 2: Selisih = Stok Akhir Sistem - Stok Aktual
+        let selisih = akhirSistem - aktual;
+        
+        // Logika Plus / Minus / Balance
+        let textSelisih = "";
+        let badge = document.getElementById('badge_pertamax');
+
+        if (selisih > 0) {
+            textSelisih = "Minus " + selisih + " Liter (Stok Aktual Kurang)";
+            badge.className = "status-badge status-minus";
+            badge.innerText = "MINUS";
+        } else if (selisih < 0) {
+            textSelisih = "Plus " + Math.abs(selisih) + " Liter (Stok Aktual Berlebih)";
+            badge.className = "status-badge status-plus";
+            badge.innerText = "PLUS";
+        } else {
+            textSelisih = "0 Liter";
+            badge.className = "status-badge status-balance";
+            badge.innerText = "BALANCE";
+        }
+
+        document.getElementById('selisih_pertamax').innerText = textSelisih;
+    }
+
+    function hitungPertalite() {
+        // Ambil nilai input
+        let awal = parseFloat(document.getElementById('awal_pertalite').value) || 0;
+        let do_bbm = parseFloat(document.getElementById('do_pertalite').value) || 0;
+        let aktual = parseFloat(document.getElementById('aktual_pertalite').value) || 0;
+
+        // Rumus 1: Stok Akhir Sistem = Stok Awal + DO
+        let akhirSistem = awal + do_bbm;
+        document.getElementById('akhir_pertalite').value = akhirSistem;
+
+        // Rumus 2: Selisih = Stok Akhir Sistem - Stok Aktual
+        let selisih = akhirSistem - aktual;
+        
+        // Logika Plus / Minus / Balance
+        let textSelisih = "";
+        let badge = document.getElementById('badge_pertalite');
+
+        if (selisih > 0) {
+            textSelisih = "Minus " + selisih + " Liter (Stok Aktual Kurang)";
+            badge.className = "status-badge status-minus";
+            badge.innerText = "MINUS";
+        } else if (selisih < 0) {
+            textSelisih = "Plus " + Math.abs(selisih) + " Liter (Stok Aktual Berlebih)";
+            badge.className = "status-badge status-plus";
+            badge.innerText = "PLUS";
+        } else {
+            textSelisih = "0 Liter";
+            badge.className = "status-badge status-balance";
+            badge.innerText = "BALANCE";
+        }
+
+        document.getElementById('selisih_pertalite').innerText = textSelisih;
+    }
+</script>
+
+</body>
+</html>

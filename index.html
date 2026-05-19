@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>PENERIMAAN BBM SPBU 3417603</title>
 
+<!-- ================= EXPORT PLUGIN ================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
+
+/* ================= GLOBAL ================= */
 
 *{
   margin:0;
@@ -31,7 +40,7 @@ body{
 }
 
 .header h1{
-  font-size:clamp(22px,5vw,34px);
+  font-size:clamp(24px,5vw,36px);
   margin-bottom:8px;
 }
 
@@ -68,16 +77,13 @@ h2{
   font-size:clamp(18px,4vw,24px);
 }
 
-/* ================= TABLE WRAPPER ================= */
+/* ================= TABLE ================= */
 
 .table-wrapper{
   width:100%;
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
-  border-radius:14px;
 }
-
-/* ================= TABLE ================= */
 
 table{
   width:100%;
@@ -102,21 +108,19 @@ th{
 td{
   background:white;
   font-size:14px;
-  color:#1e293b;
 }
 
 /* ================= INPUT ================= */
 
 input{
   width:100%;
-  min-width:90px;
+  min-width:80px;
   padding:10px;
   border:1px solid #cbd5e1;
   border-radius:10px;
   text-align:center;
   background:#f8fbff;
   font-size:14px;
-  color:#1e293b;
 }
 
 input:focus{
@@ -149,6 +153,35 @@ input:focus{
   font-weight:bold;
 }
 
+/* ================= BUTTON EXPORT ================= */
+
+.actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:10px;
+  margin-bottom:25px;
+}
+
+.actions button{
+  padding:12px 22px;
+  border:none;
+  border-radius:12px;
+  background:#1d4ed8;
+  color:white;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 4px 10px rgba(37,99,235,0.2);
+}
+
+.actions button:hover{
+  background:#2563eb;
+  transform:translateY(-2px);
+}
+
 /* ================= FOOTER ================= */
 
 .footer{
@@ -156,46 +189,21 @@ input:focus{
   color:#dbeafe;
   text-align:center;
   padding:18px;
-  margin-top:30px;
+  margin-top:10px;
   font-size:13px;
-  letter-spacing:1px;
 }
 
-/* ================= TABLET ================= */
-
-@media(max-width:992px){
-
-  .container{
-    padding:15px;
-  }
-
-  .card{
-    padding:16px;
-  }
-
-  th, td{
-    padding:10px;
-    font-size:13px;
-  }
-
-  input{
-    font-size:13px;
-    padding:9px;
-  }
-
-}
-
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:768px){
 
-  .header{
-    padding:25px 15px;
+  .container{
+    padding:12px;
   }
 
   .card{
-    border-radius:16px;
     padding:14px;
+    border-radius:16px;
   }
 
   table{
@@ -210,44 +218,22 @@ input:focus{
   input{
     padding:8px;
     font-size:12px;
-    min-width:80px;
   }
 
 }
 
-/* ================= SMALL MOBILE ================= */
-
 @media(max-width:480px){
 
-  .container{
-    padding:10px;
+  .actions button{
+    width:100%;
+  }
+
+  .header h1{
+    font-size:22px;
   }
 
   .header p{
     font-size:12px;
-  }
-
-  h2{
-    font-size:18px;
-  }
-
-  table{
-    min-width:650px;
-  }
-
-  th, td{
-    font-size:11px;
-    padding:7px;
-  }
-
-  input{
-    font-size:11px;
-    padding:7px;
-  }
-
-  .footer{
-    font-size:11px;
-    padding:15px;
   }
 
 }
@@ -266,229 +252,315 @@ input:focus{
 
 <div class="container">
 
-  <!-- ================= PENERIMAAN BBM ================= -->
+<!-- ================= PENERIMAAN BBM ================= -->
 
-  <div class="card">
+<div class="card">
 
-    <h2>PENERIMAAN BBM</h2>
+<h2>PENERIMAAN BBM</h2>
 
-    <div class="table-wrapper">
+<div class="table-wrapper">
 
-      <table>
+<table>
 
-        <thead>
-          <tr>
-            <th>PRODUK</th>
-            <th>STOK AWAL</th>
-            <th>DO</th>
-            <th>STOK AKHIR</th>
-            <th>STOK AKTUAL</th>
-            <th>SELISIH</th>
-            <th>KETERANGAN</th>
-          </tr>
-        </thead>
+<thead>
+<tr>
+<th>PRODUK</th>
+<th>STOK AWAL</th>
+<th>DO</th>
+<th>STOK AKHIR</th>
+<th>STOK AKTUAL</th>
+<th>SELISIH</th>
+<th>KETERANGAN</th>
+</tr>
+</thead>
 
-        <tbody>
+<tbody>
 
-          <tr>
+<tr>
 
-            <td>PERTAMAX</td>
+<td>PERTAMAX</td>
 
-            <td>
-              <input type="number" id="stokSebelumPX" oninput="hitungBBM()">
-            </td>
+<td>
+<input type="number" id="stokSebelumPX" oninput="hitungBBM()">
+</td>
 
-            <td>
-              <input type="number" id="doPX" oninput="hitungBBM()">
-            </td>
+<td>
+<input type="number" id="doPX" oninput="hitungBBM()">
+</td>
 
-            <td class="hasil" id="stokAkhirPX">0.00</td>
+<td class="hasil" id="stokAkhirPX">0.00</td>
 
-            <td>
-              <input type="number" id="stokAktualPX" oninput="hitungBBM()">
-            </td>
+<td>
+<input type="number" id="stokAktualPX" oninput="hitungBBM()">
+</td>
 
-            <td class="hasil" id="selisihPX">0.00</td>
+<td class="hasil" id="selisihPX">0.00</td>
 
-            <td class="hasil" id="ketPX">BALANCE</td>
+<td class="hasil" id="ketPX">BALANCE</td>
 
-          </tr>
+</tr>
 
-          <tr>
+<tr>
 
-            <td>PERTALITE</td>
+<td>PERTALITE</td>
 
-            <td>
-              <input type="number" id="stokSebelumPL" oninput="hitungBBM()">
-            </td>
+<td>
+<input type="number" id="stokSebelumPL" oninput="hitungBBM()">
+</td>
 
-            <td>
-              <input type="number" id="doPL" oninput="hitungBBM()">
-            </td>
+<td>
+<input type="number" id="doPL" oninput="hitungBBM()">
+</td>
 
-            <td class="hasil" id="stokAkhirPL">0.00</td>
+<td class="hasil" id="stokAkhirPL">0.00</td>
 
-            <td>
-              <input type="number" id="stokAktualPL" oninput="hitungBBM()">
-            </td>
+<td>
+<input type="number" id="stokAktualPL" oninput="hitungBBM()">
+</td>
 
-            <td class="hasil" id="selisihPL">0.00</td>
+<td class="hasil" id="selisihPL">0.00</td>
 
-            <td class="hasil" id="ketPL">BALANCE</td>
+<td class="hasil" id="ketPL">BALANCE</td>
 
-          </tr>
+</tr>
 
-        </tbody>
+</tbody>
 
-      </table>
+</table>
 
-    </div>
+</div>
+</div>
 
-  </div>
+<!-- ================= GANTUNGAN POS SYSTEM ================= -->
 
-  <!-- ================= GANTUNGAN POS SYSTEM ================= -->
+<div class="card">
 
-  <div class="card">
+<h2>GANTUNGAN POS SYSTEM</h2>
 
-    <h2>GANTUNGAN POS SYSTEM</h2>
+<div class="table-wrapper">
 
-    <div class="table-wrapper">
+<table>
 
-      <table>
+<thead>
+<tr>
+<th>PRODUK</th>
+<th>STOK AWAL</th>
+<th>PENJUALAN</th>
+<th>STOK AKHIR</th>
+<th>GANTUNGAN</th>
+<th>DIGANTUNG</th>
+</tr>
+</thead>
 
-        <thead>
-          <tr>
-            <th>PRODUK</th>
-            <th>STOK AWAL</th>
-            <th>PENJUALAN</th>
-            <th>STOK AKHIR</th>
-            <th>GANTUNGAN</th>
-            <th>DIGANTUNG</th>
-          </tr>
-        </thead>
+<tbody>
 
-        <tbody>
+<tr>
 
-          <tr>
+<td>PERTAMAX</td>
 
-            <td>PERTAMAX</td>
+<td>
+<input type="number" id="stokAwalPosPX" oninput="hitungPOS()">
+</td>
 
-            <td>
-              <input type="number" id="stokAwalPosPX" oninput="hitungPOS()">
-            </td>
+<td>
+<input type="number" id="gantunganPX" oninput="hitungPOS()">
+</td>
 
-            <td>
-              <input type="number" id="gantunganPX" oninput="hitungPOS()">
-            </td>
+<td class="hasil" id="stokAkhirPosPX">0.00</td>
 
-            <td class="hasil" id="stokAkhirPosPX">0.00</td>
+<td class="hasil" id="stokAktualTampilPX">0.00</td>
 
-            <td class="hasil" id="stokAktualTampilPX">0.00</td>
+<td class="hasil" id="hasilGantungPX">0.00</td>
 
-            <td class="hasil" id="hasilGantungPX">0.00</td>
+</tr>
 
-          </tr>
+<tr>
 
-          <tr>
+<td>PERTALITE</td>
 
-            <td>PERTALITE</td>
+<td>
+<input type="number" id="stokAwalPosPL" oninput="hitungPOS()">
+</td>
 
-            <td>
-              <input type="number" id="stokAwalPosPL" oninput="hitungPOS()">
-            </td>
+<td>
+<input type="number" id="gantunganPL" oninput="hitungPOS()">
+</td>
 
-            <td>
-              <input type="number" id="gantunganPL" oninput="hitungPOS()">
-            </td>
+<td class="hasil" id="stokAkhirPosPL">0.00</td>
 
-            <td class="hasil" id="stokAkhirPosPL">0.00</td>
+<td class="hasil" id="stokAktualTampilPL">0.00</td>
 
-            <td class="hasil" id="stokAktualTampilPL">0.00</td>
+<td class="hasil" id="hasilGantungPL">0.00</td>
 
-            <td class="hasil" id="hasilGantungPL">0.00</td>
+</tr>
 
-          </tr>
+</tbody>
 
-        </tbody>
+</table>
 
-      </table>
+</div>
+</div>
 
-    </div>
+<!-- ================= SISA GANTUNGAN ================= -->
 
-  </div>
+<div class="card">
 
-  <!-- ================= SISA GANTUNGAN ================= -->
+<h2>SISA GANTUNGAN</h2>
 
-  <div class="card">
+<div class="table-wrapper">
 
-    <h2>SISA GANTUNGAN</h2>
+<table>
 
-    <div class="table-wrapper">
+<thead>
+<tr>
+<th>PRODUK</th>
+<th>STOK AWAL</th>
+<th>STOK AKHIR</th>
+<th>SISA GANTUNGAN</th>
+</tr>
+</thead>
 
-      <table>
+<tbody>
 
-        <thead>
-          <tr>
-            <th>PRODUK</th>
-            <th>STOK AWAL</th>
-            <th>STOK AKHIR</th>
-            <th>SISA GANTUNGAN</th>
-          </tr>
-        </thead>
+<tr>
 
-        <tbody>
+<td>PERTAMAX</td>
 
-          <tr>
+<td class="hasil" id="stokKunciPX">0.00</td>
 
-            <td>PERTAMAX</td>
+<td>
+<input type="number" id="stokAkhirSisaPX" oninput="hitungPOS()">
+</td>
 
-            <td class="hasil" id="stokKunciPX">0.00</td>
+<td class="hasil" id="sisaGantungPX">0.00</td>
 
-            <td>
-              <input type="number" id="stokAkhirSisaPX" oninput="hitungPOS()">
-            </td>
+</tr>
 
-            <td class="hasil" id="sisaGantungPX">0.00</td>
+<tr>
 
-          </tr>
+<td>PERTALITE</td>
 
-          <tr>
+<td class="hasil" id="stokKunciPL">0.00</td>
 
-            <td>PERTALITE</td>
+<td>
+<input type="number" id="stokAkhirSisaPL" oninput="hitungPOS()">
+</td>
 
-            <td class="hasil" id="stokKunciPL">0.00</td>
+<td class="hasil" id="sisaGantungPL">0.00</td>
 
-            <td>
-              <input type="number" id="stokAkhirSisaPL" oninput="hitungPOS()">
-            </td>
+</tr>
 
-            <td class="hasil" id="sisaGantungPL">0.00</td>
+</tbody>
 
-          </tr>
+</table>
 
-        </tbody>
+</div>
+</div>
 
-      </table>
+</div>
 
-    </div>
+<!-- ================= EXPORT BUTTON ================= -->
 
-  </div>
+<div class="actions">
+
+  <button onclick="downloadHTML()">
+    Export HTML
+  </button>
+
+  <button onclick="downloadPDF()">
+    Export PDF
+  </button>
 
 </div>
 
 <!-- ================= FOOTER ================= -->
 
 <div class="footer">
-  © 2026 SPBU 3417603 | Sistem Monitoring BBM Made With Love By Ag Windy
+© 2026 SPBU 3417603 | Sistem Monitoring BBM Made With Love By Ag Windy
 </div>
 
 <script>
 
+/* ================= EXPORT HTML ================= */
+
+function downloadHTML(){
+
+  const htmlContent =
+    document.documentElement.outerHTML;
+
+  const blob =
+    new Blob(
+      [htmlContent],
+      {type:"text/html"}
+    );
+
+  const link =
+    document.createElement("a");
+
+  link.href =
+    URL.createObjectURL(blob);
+
+  link.download =
+    "PENERIMAAN_BBM_SPBU.html";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+}
+
+/* ================= EXPORT PDF ================= */
+
+async function downloadPDF(){
+
+  const { jsPDF } = window.jspdf;
+
+  const element =
+    document.body;
+
+  const canvas =
+    await html2canvas(element,{
+      scale:2,
+      useCORS:true
+    });
+
+  const imgData =
+    canvas.toDataURL("image/png");
+
+  const pdf =
+    new jsPDF(
+      "p",
+      "mm",
+      "a4"
+    );
+
+  const pdfWidth =
+    pdf.internal.pageSize.getWidth();
+
+  const pdfHeight =
+    (canvas.height * pdfWidth)
+    / canvas.width;
+
+  pdf.addImage(
+    imgData,
+    "PNG",
+    0,
+    0,
+    pdfWidth,
+    pdfHeight
+  );
+
+  pdf.save(
+    "PENERIMAAN_BBM_SPBU.pdf"
+  );
+
+}
+
 /* ================= PENERIMAAN BBM ================= */
 
 function hitungBBM(){
-
-  // ===== PERTAMAX =====
 
   let stokSebelumPX =
     parseFloat(document.getElementById("stokSebelumPX").value) || 0;
@@ -516,19 +588,23 @@ function hitungBBM(){
     stokAktualPX.toFixed(2);
 
   if(selisihPX > 0){
+
     document.getElementById("ketPX").innerHTML =
       "<span class='plus'>PLUS</span>";
+
   }
   else if(selisihPX < 0){
+
     document.getElementById("ketPX").innerHTML =
       "<span class='minus'>MINUS</span>";
+
   }
   else{
+
     document.getElementById("ketPX").innerHTML =
       "<span class='balance'>BALANCE</span>";
-  }
 
-  // ===== PERTALITE =====
+  }
 
   let stokSebelumPL =
     parseFloat(document.getElementById("stokSebelumPL").value) || 0;
@@ -556,26 +632,31 @@ function hitungBBM(){
     stokAktualPL.toFixed(2);
 
   if(selisihPL > 0){
+
     document.getElementById("ketPL").innerHTML =
       "<span class='plus'>PLUS</span>";
+
   }
   else if(selisihPL < 0){
+
     document.getElementById("ketPL").innerHTML =
       "<span class='minus'>MINUS</span>";
+
   }
   else{
+
     document.getElementById("ketPL").innerHTML =
       "<span class='balance'>BALANCE</span>";
+
   }
 
   hitungPOS();
+
 }
 
-/* ================= GANTUNGAN POS SYSTEM ================= */
+/* ================= GANTUNGAN POS ================= */
 
 function hitungPOS(){
-
-  // ===== PERTAMAX =====
 
   let stokAwalPX =
     parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
@@ -603,8 +684,6 @@ function hitungPOS(){
 
   document.getElementById("sisaGantungPX").innerText =
     sisaPX.toFixed(2);
-
-  // ===== PERTALITE =====
 
   let stokAwalPL =
     parseFloat(document.getElementById("stokAwalPosPL").value) || 0;

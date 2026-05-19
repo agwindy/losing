@@ -1,0 +1,226 @@
+# Aplikasi Penerimaan BBM SPBU 34.17603
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penerimaan BBM SPBU 34.17603</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      background: white;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .header h1 {
+      color: #1e3a8a;
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #1e293b;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      outline: none;
+      box-shadow: 0 0 10px rgba(37,99,235,0.2);
+    }
+
+    .hasil {
+      margin-top: 25px;
+      background: #eff6ff;
+      padding: 20px;
+      border-radius: 16px;
+      border: 2px solid #bfdbfe;
+    }
+
+    .hasil-item {
+      margin-bottom: 15px;
+    }
+
+    .hasil-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .hasil-title {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 5px;
+    }
+
+    .hasil-value {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0f172a;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .plus {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .minus {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .footer {
+      margin-top: 20px;
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>SPBU 34.17603</h1>
+    <p>Aplikasi Penerimaan BBM</p>
+  </div>
+
+  <div class="form-group">
+    <label>Stok Awal</label>
+    <input type="number" id="stokAwal" placeholder="Masukkan stok awal" oninput="hitung()">
+  </div>
+
+  <div class="form-group">
+    <label>DO (Delivery Order)</label>
+    <input type="number" id="do" placeholder="Masukkan jumlah DO" oninput="hitung()">
+  </div>
+
+  <div class="form-group">
+    <label>Stok Aktual</label>
+    <input type="number" id="stokAktual" placeholder="Masukkan stok aktual" oninput="hitung()">
+  </div>
+
+  <div class="hasil">
+    <div class="hasil-item">
+      <div class="hasil-title">Hasil Losing (Stok Awal + DO)</div>
+      <div class="hasil-value" id="hasilLosing">0</div>
+    </div>
+
+    <div class="hasil-item">
+      <div class="hasil-title">Selisih Losing</div>
+      <div class="hasil-value" id="selisih">0</div>
+    </div>
+
+    <div class="status" id="statusLosing">
+      Menunggu Input
+    </div>
+  </div>
+
+  <div class="footer">
+    Sistem otomatis perhitungan penerimaan BBM
+  </div>
+</div>
+
+<script>
+function formatAngka(angka) {
+  return Number(angka).toLocaleString('id-ID');
+}
+
+function hitung() {
+  let stokAwal = parseFloat(document.getElementById('stokAwal').value) || 0;
+  let doBBM = parseFloat(document.getElementById('do').value) || 0;
+  let stokAktual = parseFloat(document.getElementById('stokAktual').value) || 0;
+
+  // Rumus hasil losing
+  let hasilLosing = stokAwal + doBBM;
+
+  // Selisih losing
+  let selisih = hasilLosing - stokAktual;
+
+  document.getElementById('hasilLosing').innerText = formatAngka(hasilLosing);
+
+  let status = document.getElementById('statusLosing');
+  let textSelisih = '';
+
+  if (selisih > 0) {
+    textSelisih = '+ ' + formatAngka(selisih);
+    status.innerText = 'PLUS Losing';
+    status.className = 'status plus';
+  } else if (selisih < 0) {
+    textSelisih = '- ' + formatAngka(Math.abs(selisih));
+    status.innerText = 'MINUS Losing';
+    status.className = 'status minus';
+  } else {
+    textSelisih = '0';
+    status.innerText = 'SEIMBANG';
+    status.className = 'status';
+  }
+
+  document.getElementById('selisih').innerText = textSelisih;
+}
+</script>
+
+</body>
+</html>
+```
+
+## Rumus Otomatis
+
+* Hasil Losing = Stok Awal + DO
+* Selisih Losing = Hasil Losing - Stok Aktual
+* Jika hasil positif = PLUS
+* Jika hasil negatif = MINUS

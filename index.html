@@ -6,13 +6,10 @@
 
 <title>PENERIMAAN BBM SPBU 3417603</title>
 
-<!-- EXPORT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
-/* ================= GLOBAL ================= */
 
 *{
   margin:0;
@@ -26,34 +23,27 @@ body{
   color:#1e293b;
 }
 
-/* ================= HEADER ================= */
-
 .header{
   background:linear-gradient(135deg,#0f172a,#1d4ed8);
   color:white;
-  padding:30px 20px;
   text-align:center;
+  padding:30px 20px;
 }
 
 .header h1{
-  font-size:clamp(22px,5vw,36px);
-  margin-bottom:8px;
+  font-size:clamp(24px,5vw,38px);
 }
 
 .header p{
+  margin-top:8px;
   color:#dbeafe;
-  font-size:14px;
 }
-
-/* ================= CONTAINER ================= */
 
 .container{
   max-width:1400px;
   margin:auto;
   padding:20px;
 }
-
-/* ================= CARD ================= */
 
 .card{
   background:white;
@@ -67,12 +57,6 @@ h2{
   text-align:center;
   margin-bottom:20px;
   color:#1d4ed8;
-}
-
-/* ================= TABLE ================= */
-
-.table-wrapper{
-  width:100%;
 }
 
 table{
@@ -94,10 +78,9 @@ th{
 input{
   width:100%;
   padding:10px;
-  border:1px solid #cbd5e1;
   border-radius:10px;
+  border:1px solid #cbd5e1;
   text-align:center;
-  font-size:14px;
 }
 
 .hasil{
@@ -105,8 +88,6 @@ input{
   font-weight:bold;
   color:#1e3a8a;
 }
-
-/* ================= STATUS ================= */
 
 .plus{
   color:#16a34a;
@@ -123,12 +104,10 @@ input{
   font-weight:bold;
 }
 
-/* ================= TOTAL ================= */
-
 .total-box{
   background:white;
-  border-radius:20px;
-  padding:15px;
+  border-radius:18px;
+  padding:12px;
   margin-bottom:25px;
   text-align:center;
   box-shadow:0 6px 18px rgba(37,99,235,0.08);
@@ -136,23 +115,21 @@ input{
 
 .total-box h3{
   color:#1d4ed8;
-  margin-bottom:8px;
-  font-size:16px;
+  font-size:14px;
 }
 
 .total-hasil{
-  font-size:18px;
+  margin-top:5px;
+  font-size:15px;
   font-weight:bold;
 }
-
-/* ================= BUTTON ================= */
 
 .actions{
   display:flex;
   gap:12px;
   justify-content:center;
   flex-wrap:wrap;
-  margin-bottom:30px;
+  margin-bottom:25px;
 }
 
 .actions button{
@@ -165,81 +142,62 @@ input{
   cursor:pointer;
 }
 
-/* ================= FOOTER ================= */
-
 .footer{
   background:#0f172a;
   color:#dbeafe;
   text-align:center;
   padding:18px;
-  font-size:13px;
 }
-
-/* ================= MOBILE RESPONSIVE ================= */
 
 @media(max-width:768px){
 
-  .container{
-    padding:12px;
-  }
+table,
+thead,
+tbody,
+th,
+td,
+tr{
+  display:block;
+  width:100%;
+}
 
-  .card{
-    padding:14px;
-  }
+thead{
+  display:none;
+}
 
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr{
-    display:block;
-    width:100%;
-  }
+tr{
+  margin-bottom:18px;
+  border:1px solid #dbeafe;
+  border-radius:16px;
+  overflow:hidden;
+}
 
-  thead{
-    display:none;
-  }
+td{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  border:none;
+  border-bottom:1px solid #e2e8f0;
+}
 
-  tr{
-    background:white;
-    margin-bottom:18px;
-    border-radius:16px;
-    overflow:hidden;
-    border:1px solid #dbeafe;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-  }
+td:last-child{
+  border-bottom:none;
+}
 
-  td{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    padding:14px;
-    text-align:right;
-    border:none;
-    border-bottom:1px solid #e2e8f0;
-  }
+td::before{
+  content:attr(data-label);
+  font-weight:bold;
+  color:#1d4ed8;
+}
 
-  td:last-child{
-    border-bottom:none;
-  }
+input{
+  max-width:140px;
+}
 
-  td::before{
-    content:attr(data-label);
-    font-weight:bold;
-    color:#1d4ed8;
-    text-align:left;
-  }
-
-  input{
-    max-width:140px;
-    font-size:16px;
-  }
-
-  .actions button{
-    width:100%;
-  }
+.actions button{
+  width:100%;
+}
 
 }
 
@@ -248,11 +206,9 @@ input{
 
 <body>
 
-<!-- HEADER -->
-
 <div class="header">
-  <h1>PENERIMAAN BBM SPBU 3417603</h1>
-  <p>Sistem Monitoring Penerimaan Bahan Bakar Minyak</p>
+<h1>PENERIMAAN BBM SPBU 3417603</h1>
+<p>Sistem Monitoring BBM</p>
 </div>
 
 <div class="container">
@@ -262,8 +218,6 @@ input{
 <div class="card">
 
 <h2>PENERIMAAN BBM</h2>
-
-<div class="table-wrapper">
 
 <table>
 
@@ -347,13 +301,11 @@ BALANCE
 
 </div>
 
-</div>
-
 <!-- ================= TOTAL SELISIH ================= -->
 
 <div class="total-box">
 
-<h3>TOTAL SELISIH PENERIMAAN BBM</h3>
+<h3>TOTAL SELISIH</h3>
 
 <div class="total-hasil" id="totalSelisih">
 BALANCE
@@ -361,13 +313,11 @@ BALANCE
 
 </div>
 
-<!-- ================= GANTUNGAN POS ================= -->
+<!-- ================= GANTUNGAN POS SYSTEM ================= -->
 
 <div class="card">
 
 <h2>GANTUNGAN POS SYSTEM</h2>
-
-<div class="table-wrapper">
 
 <table>
 
@@ -433,15 +383,11 @@ BALANCE
 
 </div>
 
-</div>
-
 <!-- ================= SISA GANTUNGAN ================= -->
 
 <div class="card">
 
 <h2>SISA GANTUNGAN</h2>
-
-<div class="table-wrapper">
 
 <table>
 
@@ -450,7 +396,9 @@ BALANCE
 <th>PRODUK</th>
 <th>STOK AWAL</th>
 <th>STOK AKHIR</th>
+<th>TOTAL</th>
 <th>SISA GANTUNGAN</th>
+<th>KETERANGAN</th>
 </tr>
 </thead>
 
@@ -460,7 +408,7 @@ BALANCE
 
 <td data-label="PRODUK">PERTAMAX</td>
 
-<td data-label="STOK AWAL" class="hasil" id="stokKunciPX">
+<td data-label="STOK AWAL" class="hasil" id="stokAwalSisaPX">
 0.00
 </td>
 
@@ -468,8 +416,16 @@ BALANCE
 <input type="number" id="stokAkhirSisaPX" oninput="hitungPOS()">
 </td>
 
+<td data-label="TOTAL" class="hasil" id="totalSisaPX">
+0.00
+</td>
+
 <td data-label="SISA GANTUNGAN" class="hasil" id="sisaGantungPX">
 0.00
+</td>
+
+<td data-label="KETERANGAN" class="hasil" id="ketSisaPX">
+BALANCE
 </td>
 
 </tr>
@@ -478,7 +434,7 @@ BALANCE
 
 <td data-label="PRODUK">PERTALITE</td>
 
-<td data-label="STOK AWAL" class="hasil" id="stokKunciPL">
+<td data-label="STOK AWAL" class="hasil" id="stokAwalSisaPL">
 0.00
 </td>
 
@@ -486,8 +442,16 @@ BALANCE
 <input type="number" id="stokAkhirSisaPL" oninput="hitungPOS()">
 </td>
 
+<td data-label="TOTAL" class="hasil" id="totalSisaPL">
+0.00
+</td>
+
 <td data-label="SISA GANTUNGAN" class="hasil" id="sisaGantungPL">
 0.00
+</td>
+
+<td data-label="KETERANGAN" class="hasil" id="ketSisaPL">
+BALANCE
 </td>
 
 </tr>
@@ -500,33 +464,31 @@ BALANCE
 
 </div>
 
-</div>
-
-<!-- BUTTON -->
-
 <div class="actions">
 
-<button onclick="exportTXT()">Export TXT</button>
+<button onclick="exportTXT()">
+Export TXT
+</button>
 
-<button onclick="exportPDF()">Export PDF</button>
+<button onclick="exportPDF()">
+Export PDF
+</button>
 
-<button onclick="exportGambar()">Export Gambar</button>
+<button onclick="exportImage()">
+Export Gambar
+</button>
 
 </div>
 
-<!-- FOOTER -->
-
 <div class="footer">
-© 2026 SPBU 3417603 | Sistem Monitoring BBM
+© 2026 SPBU 3417603 | Made With Love By Ag Windy
 </div>
 
 <script>
 
-/* ================= HITUNG BBM ================= */
+/* ================= PENERIMAAN BBM ================= */
 
 function hitungBBM(){
-
-/* PERTAMAX */
 
 let stokSebelumPX =
 parseFloat(document.getElementById("stokSebelumPX").value) || 0;
@@ -549,7 +511,7 @@ stokAkhirPX.toFixed(2);
 document.getElementById("selisihPX").innerText =
 selisihPX.toFixed(2);
 
-document.getElementById("stokKunciPX").innerText =
+document.getElementById("stokAwalSisaPX").innerText =
 stokAktualPX.toFixed(2);
 
 if(selisihPX > 0){
@@ -570,8 +532,6 @@ document.getElementById("ketPX").innerHTML =
 "<span class='balance'>BALANCE</span>";
 
 }
-
-/* PERTALITE */
 
 let stokSebelumPL =
 parseFloat(document.getElementById("stokSebelumPL").value) || 0;
@@ -594,7 +554,7 @@ stokAkhirPL.toFixed(2);
 document.getElementById("selisihPL").innerText =
 selisihPL.toFixed(2);
 
-document.getElementById("stokKunciPL").innerText =
+document.getElementById("stokAwalSisaPL").innerText =
 stokAktualPL.toFixed(2);
 
 if(selisihPL > 0){
@@ -616,21 +576,23 @@ document.getElementById("ketPL").innerHTML =
 
 }
 
-/* TOTAL SELISIH */
-
 let totalSelisih =
 selisihPX + selisihPL;
 
 if(totalSelisih > 0){
 
 document.getElementById("totalSelisih").innerHTML =
-"<span class='plus'>TOTAL +" + totalSelisih.toFixed(2) + "</span>";
+"<span class='plus'>TOTAL +" +
+totalSelisih.toFixed(2) +
+"</span>";
 
 }
 else if(totalSelisih < 0){
 
 document.getElementById("totalSelisih").innerHTML =
-"<span class='minus'>TOTAL -" + Math.abs(totalSelisih).toFixed(2) + "</span>";
+"<span class='minus'>TOTAL -" +
+Math.abs(totalSelisih).toFixed(2) +
+"</span>";
 
 }
 else{
@@ -644,11 +606,11 @@ hitungPOS();
 
 }
 
-/* ================= HITUNG POS ================= */
+/* ================= GANTUNGAN POS ================= */
 
 function hitungPOS(){
 
-/* PERTAMAX */
+/* ================= PERTAMAX ================= */
 
 let stokAwalPosPX =
 parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
@@ -671,19 +633,51 @@ stokAktualPX - stokAkhirPosPX;
 document.getElementById("digantungPX").innerText =
 digantungPX.toFixed(2);
 
-let stokAwalSisaPX =
-parseFloat(document.getElementById("stokKunciPX").innerText) || 0;
+document.getElementById("stokAwalSisaPX").innerText =
+stokAktualPX.toFixed(2);
 
 let stokAkhirSisaPX =
 parseFloat(document.getElementById("stokAkhirSisaPX").value) || 0;
 
-let sisaPX =
-stokAwalSisaPX - stokAkhirSisaPX;
+let totalPX =
+stokAktualPX - stokAkhirSisaPX;
+
+document.getElementById("totalSisaPX").innerText =
+totalPX.toFixed(2);
 
 document.getElementById("sisaGantungPX").innerText =
-sisaPX.toFixed(2);
+digantungPX.toFixed(2);
 
-/* PERTALITE */
+/* ================= REVISI TERBARU ================= */
+/* TERSISA & PENJUALAN */
+
+let hasilKetPX =
+digantungPX - totalPX;
+
+if(hasilKetPX > 0){
+
+document.getElementById("ketSisaPX").innerHTML =
+"<span class='plus'>TERSISA " +
+hasilKetPX.toFixed(2) +
+"</span>";
+
+}
+else if(hasilKetPX < 0){
+
+document.getElementById("ketSisaPX").innerHTML =
+"<span class='minus'>PENJUALAN " +
+Math.abs(hasilKetPX).toFixed(2) +
+"</span>";
+
+}
+else{
+
+document.getElementById("ketSisaPX").innerHTML =
+"<span class='balance'>BALANCE</span>";
+
+}
+
+/* ================= PERTALITE ================= */
 
 let stokAwalPosPL =
 parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
@@ -706,17 +700,49 @@ stokAktualPL - stokAkhirPosPL;
 document.getElementById("digantungPL").innerText =
 digantungPL.toFixed(2);
 
-let stokAwalSisaPL =
-parseFloat(document.getElementById("stokKunciPL").innerText) || 0;
+document.getElementById("stokAwalSisaPL").innerText =
+stokAktualPL.toFixed(2);
 
 let stokAkhirSisaPL =
 parseFloat(document.getElementById("stokAkhirSisaPL").value) || 0;
 
-let sisaPL =
-stokAwalSisaPL - stokAkhirSisaPL;
+let totalPL =
+stokAktualPL - stokAkhirSisaPL;
+
+document.getElementById("totalSisaPL").innerText =
+totalPL.toFixed(2);
 
 document.getElementById("sisaGantungPL").innerText =
-sisaPL.toFixed(2);
+digantungPL.toFixed(2);
+
+/* ================= REVISI TERBARU ================= */
+/* TERSISA & PENJUALAN */
+
+let hasilKetPL =
+digantungPL - totalPL;
+
+if(hasilKetPL > 0){
+
+document.getElementById("ketSisaPL").innerHTML =
+"<span class='plus'>TERSISA " +
+hasilKetPL.toFixed(2) +
+"</span>";
+
+}
+else if(hasilKetPL < 0){
+
+document.getElementById("ketSisaPL").innerHTML =
+"<span class='minus'>PENJUALAN " +
+Math.abs(hasilKetPL).toFixed(2) +
+"</span>";
+
+}
+else{
+
+document.getElementById("ketSisaPL").innerHTML =
+"<span class='balance'>BALANCE</span>";
+
+}
 
 }
 
@@ -724,17 +750,20 @@ sisaPL.toFixed(2);
 
 function exportTXT(){
 
-let text = document.body.innerText;
+const blob =
+new Blob(
+["PENERIMAAN BBM SPBU 3417603"],
+{type:"text/plain"}
+);
 
-let blob = new Blob([text],{
-type:"text/plain"
-});
+const link =
+document.createElement("a");
 
-let link = document.createElement("a");
+link.href =
+URL.createObjectURL(blob);
 
-link.href = URL.createObjectURL(blob);
-
-link.download = "SPBU3417603.txt";
+link.download =
+"RANGKUMAN_BBM.txt";
 
 link.click();
 
@@ -746,27 +775,36 @@ function exportPDF(){
 
 const { jsPDF } = window.jspdf;
 
-let pdf = new jsPDF();
+const pdf =
+new jsPDF();
 
-pdf.text(document.body.innerText,10,10);
+pdf.text(
+"PENERIMAAN BBM SPBU 3417603",
+20,
+20
+);
 
-pdf.save("SPBU3417603.pdf");
+pdf.save("RANGKUMAN_BBM.pdf");
 
 }
 
 /* ================= EXPORT GAMBAR ================= */
 
-async function exportGambar(){
+async function exportImage(){
 
-const canvas = await html2canvas(document.body);
+const canvas =
+await html2canvas(document.body);
 
-const image = canvas.toDataURL("image/png");
+const image =
+canvas.toDataURL("image/png");
 
-const link = document.createElement("a");
+const link =
+document.createElement("a");
 
 link.href = image;
 
-link.download = "SPBU3417603.png";
+link.download =
+"RANGKUMAN_BBM.png";
 
 link.click();
 

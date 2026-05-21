@@ -12,6 +12,8 @@
 
 <style>
 
+/* ================= GLOBAL ================= */
+
 *{
   margin:0;
   padding:0;
@@ -24,7 +26,7 @@ body{
   color:#1e293b;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header{
   background:linear-gradient(135deg,#0f172a,#1d4ed8);
@@ -34,15 +36,16 @@ body{
 }
 
 .header h1{
-  font-size:32px;
+  font-size:clamp(22px,5vw,36px);
   margin-bottom:8px;
 }
 
 .header p{
   color:#dbeafe;
+  font-size:14px;
 }
 
-/* CONTAINER */
+/* ================= CONTAINER ================= */
 
 .container{
   max-width:1400px;
@@ -50,7 +53,7 @@ body{
   padding:20px;
 }
 
-/* CARD */
+/* ================= CARD ================= */
 
 .card{
   background:white;
@@ -66,16 +69,15 @@ h2{
   color:#1d4ed8;
 }
 
-/* TABLE */
+/* ================= TABLE ================= */
 
 .table-wrapper{
-  overflow-x:auto;
+  width:100%;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:900px;
 }
 
 th,td{
@@ -95,6 +97,7 @@ input{
   border:1px solid #cbd5e1;
   border-radius:10px;
   text-align:center;
+  font-size:14px;
 }
 
 .hasil{
@@ -103,7 +106,7 @@ input{
   color:#1e3a8a;
 }
 
-/* STATUS */
+/* ================= STATUS ================= */
 
 .plus{
   color:#16a34a;
@@ -120,12 +123,12 @@ input{
   font-weight:bold;
 }
 
-/* TOTAL */
+/* ================= TOTAL ================= */
 
 .total-box{
   background:white;
   border-radius:20px;
-  padding:18px;
+  padding:15px;
   margin-bottom:25px;
   text-align:center;
   box-shadow:0 6px 18px rgba(37,99,235,0.08);
@@ -133,7 +136,8 @@ input{
 
 .total-box h3{
   color:#1d4ed8;
-  margin-bottom:10px;
+  margin-bottom:8px;
+  font-size:16px;
 }
 
 .total-hasil{
@@ -141,7 +145,7 @@ input{
   font-weight:bold;
 }
 
-/* BUTTON */
+/* ================= BUTTON ================= */
 
 .actions{
   display:flex;
@@ -152,16 +156,16 @@ input{
 }
 
 .actions button{
-  padding:12px 24px;
+  padding:12px 20px;
   border:none;
   border-radius:12px;
   background:#1d4ed8;
   color:white;
-  cursor:pointer;
   font-weight:bold;
+  cursor:pointer;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 .footer{
   background:#0f172a;
@@ -171,7 +175,7 @@ input{
   font-size:13px;
 }
 
-/* RESPONSIVE */
+/* ================= MOBILE RESPONSIVE ================= */
 
 @media(max-width:768px){
 
@@ -183,8 +187,58 @@ input{
     padding:14px;
   }
 
-  table{
-    min-width:700px;
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr{
+    display:block;
+    width:100%;
+  }
+
+  thead{
+    display:none;
+  }
+
+  tr{
+    background:white;
+    margin-bottom:18px;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid #dbeafe;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  td{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    text-align:right;
+    border:none;
+    border-bottom:1px solid #e2e8f0;
+  }
+
+  td:last-child{
+    border-bottom:none;
+  }
+
+  td::before{
+    content:attr(data-label);
+    font-weight:bold;
+    color:#1d4ed8;
+    text-align:left;
+  }
+
+  input{
+    max-width:140px;
+    font-size:16px;
+  }
+
+  .actions button{
+    width:100%;
   }
 
 }
@@ -203,7 +257,7 @@ input{
 
 <div class="container">
 
-<!-- PENERIMAAN BBM -->
+<!-- ================= PENERIMAAN BBM ================= -->
 
 <div class="card">
 
@@ -229,49 +283,61 @@ input{
 
 <tr>
 
-<td>PERTAMAX</td>
+<td data-label="PRODUK">PERTAMAX</td>
 
-<td>
+<td data-label="STOK AWAL">
 <input type="number" id="stokSebelumPX" oninput="hitungBBM()">
 </td>
 
-<td>
+<td data-label="DO">
 <input type="number" id="doPX" oninput="hitungBBM()">
 </td>
 
-<td class="hasil" id="stokAkhirPX">0.00</td>
+<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPX">
+0.00
+</td>
 
-<td>
+<td data-label="STOK AKTUAL">
 <input type="number" id="stokAktualPX" oninput="hitungBBM()">
 </td>
 
-<td class="hasil" id="selisihPX">0.00</td>
+<td data-label="SELISIH" class="hasil" id="selisihPX">
+0.00
+</td>
 
-<td class="hasil" id="ketPX">BALANCE</td>
+<td data-label="KETERANGAN" class="hasil" id="ketPX">
+BALANCE
+</td>
 
 </tr>
 
 <tr>
 
-<td>PERTALITE</td>
+<td data-label="PRODUK">PERTALITE</td>
 
-<td>
+<td data-label="STOK AWAL">
 <input type="number" id="stokSebelumPL" oninput="hitungBBM()">
 </td>
 
-<td>
+<td data-label="DO">
 <input type="number" id="doPL" oninput="hitungBBM()">
 </td>
 
-<td class="hasil" id="stokAkhirPL">0.00</td>
+<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPL">
+0.00
+</td>
 
-<td>
+<td data-label="STOK AKTUAL">
 <input type="number" id="stokAktualPL" oninput="hitungBBM()">
 </td>
 
-<td class="hasil" id="selisihPL">0.00</td>
+<td data-label="SELISIH" class="hasil" id="selisihPL">
+0.00
+</td>
 
-<td class="hasil" id="ketPL">BALANCE</td>
+<td data-label="KETERANGAN" class="hasil" id="ketPL">
+BALANCE
+</td>
 
 </tr>
 
@@ -283,7 +349,7 @@ input{
 
 </div>
 
-<!-- TOTAL SELISIH -->
+<!-- ================= TOTAL SELISIH ================= -->
 
 <div class="total-box">
 
@@ -295,7 +361,7 @@ BALANCE
 
 </div>
 
-<!-- GANTUNGAN POS -->
+<!-- ================= GANTUNGAN POS ================= -->
 
 <div class="card">
 
@@ -319,37 +385,45 @@ BALANCE
 
 <tr>
 
-<td>PERTAMAX</td>
+<td data-label="PRODUK">PERTAMAX</td>
 
-<td>
+<td data-label="STOK AWAL">
 <input type="number" id="stokAwalPosPX" oninput="hitungPOS()">
 </td>
 
-<td>
+<td data-label="PENJUALAN">
 <input type="number" id="penjualanPX" oninput="hitungPOS()">
 </td>
 
-<td class="hasil" id="stokAkhirPosPX">0.00</td>
+<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPosPX">
+0.00
+</td>
 
-<td class="hasil" id="digantungPX">0.00</td>
+<td data-label="DIGANTUNG" class="hasil" id="digantungPX">
+0.00
+</td>
 
 </tr>
 
 <tr>
 
-<td>PERTALITE</td>
+<td data-label="PRODUK">PERTALITE</td>
 
-<td>
+<td data-label="STOK AWAL">
 <input type="number" id="stokAwalPosPL" oninput="hitungPOS()">
 </td>
 
-<td>
+<td data-label="PENJUALAN">
 <input type="number" id="penjualanPL" oninput="hitungPOS()">
 </td>
 
-<td class="hasil" id="stokAkhirPosPL">0.00</td>
+<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPosPL">
+0.00
+</td>
 
-<td class="hasil" id="digantungPL">0.00</td>
+<td data-label="DIGANTUNG" class="hasil" id="digantungPL">
+0.00
+</td>
 
 </tr>
 
@@ -361,7 +435,7 @@ BALANCE
 
 </div>
 
-<!-- SISA GANTUNGAN -->
+<!-- ================= SISA GANTUNGAN ================= -->
 
 <div class="card">
 
@@ -384,29 +458,37 @@ BALANCE
 
 <tr>
 
-<td>PERTAMAX</td>
+<td data-label="PRODUK">PERTAMAX</td>
 
-<td class="hasil" id="stokKunciPX">0.00</td>
+<td data-label="STOK AWAL" class="hasil" id="stokKunciPX">
+0.00
+</td>
 
-<td>
+<td data-label="STOK AKHIR">
 <input type="number" id="stokAkhirSisaPX" oninput="hitungPOS()">
 </td>
 
-<td class="hasil" id="sisaGantungPX">0.00</td>
+<td data-label="SISA GANTUNGAN" class="hasil" id="sisaGantungPX">
+0.00
+</td>
 
 </tr>
 
 <tr>
 
-<td>PERTALITE</td>
+<td data-label="PRODUK">PERTALITE</td>
 
-<td class="hasil" id="stokKunciPL">0.00</td>
+<td data-label="STOK AWAL" class="hasil" id="stokKunciPL">
+0.00
+</td>
 
-<td>
+<td data-label="STOK AKHIR">
 <input type="number" id="stokAkhirSisaPL" oninput="hitungPOS()">
 </td>
 
-<td class="hasil" id="sisaGantungPL">0.00</td>
+<td data-label="SISA GANTUNGAN" class="hasil" id="sisaGantungPL">
+0.00
+</td>
 
 </tr>
 
@@ -574,12 +656,8 @@ parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
 let penjualanPX =
 parseFloat(document.getElementById("penjualanPX").value) || 0;
 
-/* STOK AKTUAL DARI PENERIMAAN BBM */
-
 let stokAktualPX =
 parseFloat(document.getElementById("stokAktualPX").value) || 0;
-
-/* STOK AKHIR POS */
 
 let stokAkhirPosPX =
 stokAwalPosPX - penjualanPX;
@@ -587,15 +665,11 @@ stokAwalPosPX - penjualanPX;
 document.getElementById("stokAkhirPosPX").innerText =
 stokAkhirPosPX.toFixed(2);
 
-/* DIGANTUNG = STOK AKTUAL - STOK AKHIR POS */
-
 let digantungPX =
 stokAktualPX - stokAkhirPosPX;
 
 document.getElementById("digantungPX").innerText =
 digantungPX.toFixed(2);
-
-/* SISA GANTUNGAN */
 
 let stokAwalSisaPX =
 parseFloat(document.getElementById("stokKunciPX").innerText) || 0;
@@ -617,12 +691,8 @@ parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
 let penjualanPL =
 parseFloat(document.getElementById("penjualanPL").value) || 0;
 
-/* STOK AKTUAL DARI PENERIMAAN BBM */
-
 let stokAktualPL =
 parseFloat(document.getElementById("stokAktualPL").value) || 0;
-
-/* STOK AKHIR POS */
 
 let stokAkhirPosPL =
 stokAwalPosPL - penjualanPL;
@@ -630,15 +700,11 @@ stokAwalPosPL - penjualanPL;
 document.getElementById("stokAkhirPosPL").innerText =
 stokAkhirPosPL.toFixed(2);
 
-/* DIGANTUNG = STOK AKTUAL - STOK AKHIR POS */
-
 let digantungPL =
 stokAktualPL - stokAkhirPosPL;
 
 document.getElementById("digantungPL").innerText =
 digantungPL.toFixed(2);
-
-/* SISA GANTUNGAN */
 
 let stokAwalSisaPL =
 parseFloat(document.getElementById("stokKunciPL").innerText) || 0;
@@ -654,7 +720,7 @@ sisaPL.toFixed(2);
 
 }
 
-/* EXPORT TXT */
+/* ================= EXPORT TXT ================= */
 
 function exportTXT(){
 
@@ -674,7 +740,7 @@ link.click();
 
 }
 
-/* EXPORT PDF */
+/* ================= EXPORT PDF ================= */
 
 function exportPDF(){
 
@@ -688,7 +754,7 @@ pdf.save("SPBU3417603.pdf");
 
 }
 
-/* EXPORT GAMBAR */
+/* ================= EXPORT GAMBAR ================= */
 
 async function exportGambar(){
 

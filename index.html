@@ -6,15 +6,11 @@
 
 <title>PENERIMAAN BBM SPBU 3417603</title>
 
-<!-- ================= EXPORT PLUGIN ================= -->
-
+<!-- EXPORT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-
-/* ================= GLOBAL ================= */
 
 *{
   margin:0;
@@ -26,40 +22,35 @@ body{
   font-family:'Segoe UI',sans-serif;
   background:#eef5ff;
   color:#1e293b;
-  overflow-x:hidden;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 .header{
   background:linear-gradient(135deg,#0f172a,#1d4ed8);
   color:white;
   padding:30px 20px;
   text-align:center;
-  box-shadow:0 4px 14px rgba(0,0,0,0.15);
 }
 
 .header h1{
-  font-size:clamp(24px,5vw,36px);
+  font-size:32px;
   margin-bottom:8px;
 }
 
 .header p{
   color:#dbeafe;
-  font-size:14px;
-  letter-spacing:1px;
 }
 
-/* ================= CONTAINER ================= */
+/* CONTAINER */
 
 .container{
-  width:100%;
   max-width:1400px;
   margin:auto;
   padding:20px;
 }
 
-/* ================= CARD ================= */
+/* CARD */
 
 .card{
   background:white;
@@ -67,31 +58,27 @@ body{
   padding:20px;
   margin-bottom:25px;
   box-shadow:0 6px 18px rgba(37,99,235,0.08);
-  overflow:hidden;
 }
 
 h2{
   text-align:center;
   margin-bottom:20px;
   color:#1d4ed8;
-  font-size:clamp(18px,4vw,24px);
 }
 
-/* ================= TABLE ================= */
+/* TABLE */
 
 .table-wrapper{
-  width:100%;
   overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
 }
 
 table{
   width:100%;
-  min-width:800px;
   border-collapse:collapse;
+  min-width:900px;
 }
 
-th, td{
+th,td{
   border:1px solid #dbeafe;
   padding:12px;
   text-align:center;
@@ -100,43 +87,23 @@ th, td{
 th{
   background:#1d4ed8;
   color:white;
-  font-weight:600;
-  font-size:14px;
-  white-space:nowrap;
 }
-
-td{
-  background:white;
-  font-size:14px;
-}
-
-/* ================= INPUT ================= */
 
 input{
   width:100%;
-  min-width:80px;
   padding:10px;
   border:1px solid #cbd5e1;
   border-radius:10px;
   text-align:center;
-  background:#f8fbff;
-  font-size:14px;
 }
-
-input:focus{
-  outline:none;
-  border-color:#2563eb;
-  box-shadow:0 0 0 3px rgba(37,99,235,0.15);
-  background:white;
-}
-
-/* ================= RESULT ================= */
 
 .hasil{
   background:#eff6ff;
-  font-weight:600;
+  font-weight:bold;
   color:#1e3a8a;
 }
+
+/* STATUS */
 
 .plus{
   color:#16a34a;
@@ -153,47 +120,58 @@ input:focus{
   font-weight:bold;
 }
 
-/* ================= BUTTON EXPORT ================= */
+/* TOTAL */
+
+.total-box{
+  background:white;
+  border-radius:20px;
+  padding:18px;
+  margin-bottom:25px;
+  text-align:center;
+  box-shadow:0 6px 18px rgba(37,99,235,0.08);
+}
+
+.total-box h3{
+  color:#1d4ed8;
+  margin-bottom:10px;
+}
+
+.total-hasil{
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* BUTTON */
 
 .actions{
   display:flex;
   gap:12px;
   justify-content:center;
   flex-wrap:wrap;
-  margin-top:10px;
-  margin-bottom:25px;
+  margin-bottom:30px;
 }
 
 .actions button{
-  padding:12px 22px;
+  padding:12px 24px;
   border:none;
   border-radius:12px;
   background:#1d4ed8;
   color:white;
-  font-size:14px;
-  font-weight:600;
   cursor:pointer;
-  transition:0.3s;
-  box-shadow:0 4px 10px rgba(37,99,235,0.2);
+  font-weight:bold;
 }
 
-.actions button:hover{
-  background:#2563eb;
-  transform:translateY(-2px);
-}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 
 .footer{
   background:#0f172a;
   color:#dbeafe;
   text-align:center;
   padding:18px;
-  margin-top:10px;
   font-size:13px;
 }
 
-/* ================= RESPONSIVE ================= */
+/* RESPONSIVE */
 
 @media(max-width:768px){
 
@@ -203,37 +181,10 @@ input:focus{
 
   .card{
     padding:14px;
-    border-radius:16px;
   }
 
   table{
     min-width:700px;
-  }
-
-  th, td{
-    padding:8px;
-    font-size:12px;
-  }
-
-  input{
-    padding:8px;
-    font-size:12px;
-  }
-
-}
-
-@media(max-width:480px){
-
-  .actions button{
-    width:100%;
-  }
-
-  .header h1{
-    font-size:22px;
-  }
-
-  .header p{
-    font-size:12px;
   }
 
 }
@@ -243,7 +194,7 @@ input:focus{
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <div class="header">
   <h1>PENERIMAAN BBM SPBU 3417603</h1>
@@ -252,7 +203,7 @@ input:focus{
 
 <div class="container">
 
-<!-- ================= PENERIMAAN BBM ================= -->
+<!-- PENERIMAAN BBM -->
 
 <div class="card">
 
@@ -329,9 +280,22 @@ input:focus{
 </table>
 
 </div>
+
 </div>
 
-<!-- ================= GANTUNGAN POS SYSTEM ================= -->
+<!-- TOTAL SELISIH -->
+
+<div class="total-box">
+
+<h3>TOTAL SELISIH PENERIMAAN BBM</h3>
+
+<div class="total-hasil" id="totalSelisih">
+BALANCE
+</div>
+
+</div>
+
+<!-- GANTUNGAN POS -->
 
 <div class="card">
 
@@ -347,7 +311,6 @@ input:focus{
 <th>STOK AWAL</th>
 <th>PENJUALAN</th>
 <th>STOK AKHIR</th>
-<th>GANTUNGAN</th>
 <th>DIGANTUNG</th>
 </tr>
 </thead>
@@ -363,14 +326,12 @@ input:focus{
 </td>
 
 <td>
-<input type="number" id="gantunganPX" oninput="hitungPOS()">
+<input type="number" id="penjualanPX" oninput="hitungPOS()">
 </td>
 
 <td class="hasil" id="stokAkhirPosPX">0.00</td>
 
-<td class="hasil" id="stokAktualTampilPX">0.00</td>
-
-<td class="hasil" id="hasilGantungPX">0.00</td>
+<td class="hasil" id="digantungPX">0.00</td>
 
 </tr>
 
@@ -383,14 +344,12 @@ input:focus{
 </td>
 
 <td>
-<input type="number" id="gantunganPL" oninput="hitungPOS()">
+<input type="number" id="penjualanPL" oninput="hitungPOS()">
 </td>
 
 <td class="hasil" id="stokAkhirPosPL">0.00</td>
 
-<td class="hasil" id="stokAktualTampilPL">0.00</td>
-
-<td class="hasil" id="hasilGantungPL">0.00</td>
+<td class="hasil" id="digantungPL">0.00</td>
 
 </tr>
 
@@ -399,9 +358,10 @@ input:focus{
 </table>
 
 </div>
+
 </div>
 
-<!-- ================= SISA GANTUNGAN ================= -->
+<!-- SISA GANTUNGAN -->
 
 <div class="card">
 
@@ -455,158 +415,36 @@ input:focus{
 </table>
 
 </div>
-</div>
 
 </div>
 
-<!-- ================= EXPORT BUTTON ================= -->
+</div>
+
+<!-- BUTTON -->
 
 <div class="actions">
 
-  <button onclick="exportTXT()">
-    Export TXT
-  </button>
+<button onclick="exportTXT()">Export TXT</button>
 
-  <button onclick="exportPDFRingkasan()">
-    Export PDF
-  </button>
+<button onclick="exportPDF()">Export PDF</button>
 
-  <button onclick="exportGambar()">
-    Export Gambar
-  </button>
+<button onclick="exportGambar()">Export Gambar</button>
 
 </div>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 
 <div class="footer">
-© 2026 SPBU 3417603 | Sistem Monitoring BBM Made With Love By Ag Windy
+© 2026 SPBU 3417603 | Sistem Monitoring BBM
 </div>
 
 <script>
 
-/* ================= RINGKASAN EXPORT ================= */
-
-function getRingkasanData(){
-
-return `
-==============================
-PENERIMAAN BBM SPBU 3417603
-==============================
-
-===== PENERIMAAN BBM =====
-
-PERTAMAX
-Stok Awal : ${document.getElementById("stokSebelumPX").value || 0}
-DO : ${document.getElementById("doPX").value || 0}
-Stok Akhir : ${document.getElementById("stokAkhirPX").innerText}
-Stok Aktual : ${document.getElementById("stokAktualPX").value || 0}
-Selisih : ${document.getElementById("selisihPX").innerText}
-Keterangan : ${document.getElementById("ketPX").innerText}
-
-PERTALITE
-Stok Awal : ${document.getElementById("stokSebelumPL").value || 0}
-DO : ${document.getElementById("doPL").value || 0}
-Stok Akhir : ${document.getElementById("stokAkhirPL").innerText}
-Stok Aktual : ${document.getElementById("stokAktualPL").value || 0}
-Selisih : ${document.getElementById("selisihPL").innerText}
-Keterangan : ${document.getElementById("ketPL").innerText}
-
-===== GANTUNGAN POS SYSTEM =====
-
-PERTAMAX
-Stok Awal : ${document.getElementById("stokAwalPosPX").value || 0}
-Penjualan : ${document.getElementById("gantunganPX").value || 0}
-Stok Akhir : ${document.getElementById("stokAkhirPosPX").innerText}
-Digantung : ${document.getElementById("hasilGantungPX").innerText}
-
-PERTALITE
-Stok Awal : ${document.getElementById("stokAwalPosPL").value || 0}
-Penjualan : ${document.getElementById("gantunganPL").value || 0}
-Stok Akhir : ${document.getElementById("stokAkhirPosPL").innerText}
-Digantung : ${document.getElementById("hasilGantungPL").innerText}
-
-===== SISA GANTUNGAN =====
-
-PERTAMAX
-Stok Awal : ${document.getElementById("stokKunciPX").innerText}
-Stok Akhir : ${document.getElementById("stokAkhirSisaPX").value || 0}
-Sisa : ${document.getElementById("sisaGantungPX").innerText}
-
-PERTALITE
-Stok Awal : ${document.getElementById("stokKunciPL").innerText}
-Stok Akhir : ${document.getElementById("stokAkhirSisaPL").value || 0}
-Sisa : ${document.getElementById("sisaGantungPL").innerText}
-`;
-
-}
-
-/* ================= EXPORT TXT ================= */
-
-function exportTXT(){
-
-const text = getRingkasanData();
-
-const blob = new Blob(
-[text],
-{type:"text/plain"}
-);
-
-const link = document.createElement("a");
-
-link.href = URL.createObjectURL(blob);
-
-link.download = "RANGKUMAN_BBM_SPBU.txt";
-
-link.click();
-
-}
-
-/* ================= EXPORT PDF ================= */
-
-function exportPDFRingkasan(){
-
-const { jsPDF } = window.jspdf;
-
-const pdf = new jsPDF();
-
-const text = getRingkasanData();
-
-const lines = pdf.splitTextToSize(text,180);
-
-pdf.setFont("courier");
-
-pdf.setFontSize(10);
-
-pdf.text(lines,10,10);
-
-pdf.save("RANGKUMAN_BBM_SPBU.pdf");
-
-}
-
-/* ================= EXPORT GAMBAR ================= */
-
-async function exportGambar(){
-
-const canvas = await html2canvas(document.body,{
-scale:2
-});
-
-const image = canvas.toDataURL("image/png");
-
-const link = document.createElement("a");
-
-link.href = image;
-
-link.download = "RANGKUMAN_BBM_SPBU.png";
-
-link.click();
-
-}
-
-/* ================= PENERIMAAN BBM ================= */
+/* ================= HITUNG BBM ================= */
 
 function hitungBBM(){
+
+/* PERTAMAX */
 
 let stokSebelumPX =
 parseFloat(document.getElementById("stokSebelumPX").value) || 0;
@@ -617,18 +455,17 @@ parseFloat(document.getElementById("doPX").value) || 0;
 let stokAktualPX =
 parseFloat(document.getElementById("stokAktualPX").value) || 0;
 
-let stokAkhirPX = stokSebelumPX + doPX;
+let stokAkhirPX =
+stokSebelumPX + doPX;
 
-let selisihPX = stokAktualPX - stokAkhirPX;
+let selisihPX =
+stokAktualPX - stokAkhirPX;
 
 document.getElementById("stokAkhirPX").innerText =
 stokAkhirPX.toFixed(2);
 
 document.getElementById("selisihPX").innerText =
 selisihPX.toFixed(2);
-
-document.getElementById("stokAktualTampilPX").innerText =
-stokAktualPX.toFixed(2);
 
 document.getElementById("stokKunciPX").innerText =
 stokAktualPX.toFixed(2);
@@ -652,6 +489,8 @@ document.getElementById("ketPX").innerHTML =
 
 }
 
+/* PERTALITE */
+
 let stokSebelumPL =
 parseFloat(document.getElementById("stokSebelumPL").value) || 0;
 
@@ -661,18 +500,17 @@ parseFloat(document.getElementById("doPL").value) || 0;
 let stokAktualPL =
 parseFloat(document.getElementById("stokAktualPL").value) || 0;
 
-let stokAkhirPL = stokSebelumPL + doPL;
+let stokAkhirPL =
+stokSebelumPL + doPL;
 
-let selisihPL = stokAktualPL - stokAkhirPL;
+let selisihPL =
+stokAktualPL - stokAkhirPL;
 
 document.getElementById("stokAkhirPL").innerText =
 stokAkhirPL.toFixed(2);
 
 document.getElementById("selisihPL").innerText =
 selisihPL.toFixed(2);
-
-document.getElementById("stokAktualTampilPL").innerText =
-stokAktualPL.toFixed(2);
 
 document.getElementById("stokKunciPL").innerText =
 stokAktualPL.toFixed(2);
@@ -696,67 +534,175 @@ document.getElementById("ketPL").innerHTML =
 
 }
 
+/* TOTAL SELISIH */
+
+let totalSelisih =
+selisihPX + selisihPL;
+
+if(totalSelisih > 0){
+
+document.getElementById("totalSelisih").innerHTML =
+"<span class='plus'>TOTAL +" + totalSelisih.toFixed(2) + "</span>";
+
+}
+else if(totalSelisih < 0){
+
+document.getElementById("totalSelisih").innerHTML =
+"<span class='minus'>TOTAL -" + Math.abs(totalSelisih).toFixed(2) + "</span>";
+
+}
+else{
+
+document.getElementById("totalSelisih").innerHTML =
+"<span class='balance'>BALANCE</span>";
+
+}
+
 hitungPOS();
 
 }
 
-/* ================= GANTUNGAN POS ================= */
+/* ================= HITUNG POS ================= */
 
 function hitungPOS(){
 
-let stokAwalPX =
+/* PERTAMAX */
+
+let stokAwalPosPX =
 parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
 
 let penjualanPX =
-parseFloat(document.getElementById("gantunganPX").value) || 0;
+parseFloat(document.getElementById("penjualanPX").value) || 0;
+
+/* STOK AKTUAL DARI PENERIMAAN BBM */
 
 let stokAktualPX =
-parseFloat(document.getElementById("stokAktualTampilPX").innerText) || 0;
+parseFloat(document.getElementById("stokAktualPX").value) || 0;
 
-let stokAkhirPX = stokAwalPX - penjualanPX;
+/* STOK AKHIR POS */
+
+let stokAkhirPosPX =
+stokAwalPosPX - penjualanPX;
 
 document.getElementById("stokAkhirPosPX").innerText =
-stokAkhirPX.toFixed(2);
+stokAkhirPosPX.toFixed(2);
 
-let diGantungPX = stokAktualPX - stokAkhirPX;
+/* DIGANTUNG = STOK AKTUAL - STOK AKHIR POS */
 
-document.getElementById("hasilGantungPX").innerText =
-diGantungPX.toFixed(2);
+let digantungPX =
+stokAktualPX - stokAkhirPosPX;
+
+document.getElementById("digantungPX").innerText =
+digantungPX.toFixed(2);
+
+/* SISA GANTUNGAN */
+
+let stokAwalSisaPX =
+parseFloat(document.getElementById("stokKunciPX").innerText) || 0;
 
 let stokAkhirSisaPX =
 parseFloat(document.getElementById("stokAkhirSisaPX").value) || 0;
 
-let sisaPX = stokAktualPX - stokAkhirSisaPX;
+let sisaPX =
+stokAwalSisaPX - stokAkhirSisaPX;
 
 document.getElementById("sisaGantungPX").innerText =
 sisaPX.toFixed(2);
 
-let stokAwalPL =
+/* PERTALITE */
+
+let stokAwalPosPL =
 parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
 
 let penjualanPL =
-parseFloat(document.getElementById("gantunganPL").value) || 0;
+parseFloat(document.getElementById("penjualanPL").value) || 0;
+
+/* STOK AKTUAL DARI PENERIMAAN BBM */
 
 let stokAktualPL =
-parseFloat(document.getElementById("stokAktualTampilPL").innerText) || 0;
+parseFloat(document.getElementById("stokAktualPL").value) || 0;
 
-let stokAkhirPL = stokAwalPL - penjualanPL;
+/* STOK AKHIR POS */
+
+let stokAkhirPosPL =
+stokAwalPosPL - penjualanPL;
 
 document.getElementById("stokAkhirPosPL").innerText =
-stokAkhirPL.toFixed(2);
+stokAkhirPosPL.toFixed(2);
 
-let diGantungPL = stokAktualPL - stokAkhirPL;
+/* DIGANTUNG = STOK AKTUAL - STOK AKHIR POS */
 
-document.getElementById("hasilGantungPL").innerText =
-diGantungPL.toFixed(2);
+let digantungPL =
+stokAktualPL - stokAkhirPosPL;
+
+document.getElementById("digantungPL").innerText =
+digantungPL.toFixed(2);
+
+/* SISA GANTUNGAN */
+
+let stokAwalSisaPL =
+parseFloat(document.getElementById("stokKunciPL").innerText) || 0;
 
 let stokAkhirSisaPL =
 parseFloat(document.getElementById("stokAkhirSisaPL").value) || 0;
 
-let sisaPL = stokAktualPL - stokAkhirSisaPL;
+let sisaPL =
+stokAwalSisaPL - stokAkhirSisaPL;
 
 document.getElementById("sisaGantungPL").innerText =
 sisaPL.toFixed(2);
+
+}
+
+/* EXPORT TXT */
+
+function exportTXT(){
+
+let text = document.body.innerText;
+
+let blob = new Blob([text],{
+type:"text/plain"
+});
+
+let link = document.createElement("a");
+
+link.href = URL.createObjectURL(blob);
+
+link.download = "SPBU3417603.txt";
+
+link.click();
+
+}
+
+/* EXPORT PDF */
+
+function exportPDF(){
+
+const { jsPDF } = window.jspdf;
+
+let pdf = new jsPDF();
+
+pdf.text(document.body.innerText,10,10);
+
+pdf.save("SPBU3417603.pdf");
+
+}
+
+/* EXPORT GAMBAR */
+
+async function exportGambar(){
+
+const canvas = await html2canvas(document.body);
+
+const image = canvas.toDataURL("image/png");
+
+const link = document.createElement("a");
+
+link.href = image;
+
+link.download = "SPBU3417603.png";
+
+link.click();
 
 }
 

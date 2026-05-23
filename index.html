@@ -55,26 +55,82 @@
   .header {
     background: linear-gradient(135deg, #0f172a, #1d4ed8);
     color: white;
-    text-align: center;
-    padding: 28px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 16px;
     box-shadow: var(--shadow-md);
     position: sticky;
     top: 0;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
-  .header h1 {
-    font-size: clamp(20px, 4vw, 32px);
+  .header-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .header-title h1 {
+    font-size: clamp(18px, 4vw, 26px);
     font-weight: 800;
     letter-spacing: -0.5px;
   }
-  .header p {
-    margin-top: 6px;
+  .header-title p {
+    font-size: 11px;
     color: #dbeafe;
     font-weight: 500;
-    font-size: 12px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+  }
+  .header-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #e0e7ff;
+  }
+  .header-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255,255,255,0.1);
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  .header-info input {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    width: 100px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .header-info input::placeholder {
+    color: rgba(255,255,255,0.6);
+  }
+  .produk-list {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: rgba(255,255,255,0.08);
+    padding: 6px 14px;
+    border-radius: 20px;
+  }
+  .produk-tag {
+    background: var(--px-blue-light);
+    color: var(--px-blue);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .produk-tag.green {
+    background: var(--pt-green-light);
+    color: var(--pt-green);
   }
 
   .tabs-wrapper {
@@ -263,6 +319,13 @@
 
   /* RESPONSIVE tanpa slider */
   @media (max-width: 768px) {
+    .header-top {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .header-info {
+      flex-wrap: wrap;
+    }
     .table-wrap { overflow-x: visible; }
     table, thead, tbody, th, td, tr { display: block; width: 100%; }
     thead { display: none; }
@@ -287,8 +350,28 @@
 <body>
 
 <div class="header">
-  <h1>PENERIMAAN BBM SPBU 3417603</h1>
-  <p>Sistem Monitoring BBM</p>
+  <div class="header-top">
+    <div class="header-title">
+      <h1>PENERIMAAN BBM SPBU 3417603</h1>
+      <p>Sistem Monitoring BBM</p>
+    </div>
+    <div class="header-info">
+      <div class="info-item">
+        📅 <span id="realtimeDate">-</span>
+      </div>
+      <div class="info-item">
+        👤 Sopir <input type="text" id="sopirInput" placeholder="Nama sopir" oninput="autoSave()">
+      </div>
+      <div class="info-item">
+        🧑 Kenek <input type="text" id="kenekInput" placeholder="Nama kenek" oninput="autoSave()">
+      </div>
+    </div>
+  </div>
+  <div class="produk-list">
+    <span style="font-size:11px;color:#dbeafe;">🛻 PRODUK DIBAWA:</span>
+    <span class="produk-tag blue">PERTAMAX</span>
+    <span class="produk-tag green">PERTALITE</span>
+  </div>
 </div>
 
 <div class="tabs-wrapper">
@@ -302,7 +385,6 @@
   <!-- ================= PENERIMAAN BBM ================= -->
   <div id="penerimaan" class="tab-pane active">
 
-    <!-- Card Pertamax -->
     <div class="card">
       <div class="card-header blue"><span class="pip blue"></span>PERTAMAX</div>
       <div class="table-wrap">
@@ -327,7 +409,6 @@
       </div>
     </div>
 
-    <!-- Card Pertalite -->
     <div class="card">
       <div class="card-header green"><span class="pip green"></span>PERTALITE</div>
       <div class="table-wrap">
@@ -352,7 +433,6 @@
       </div>
     </div>
 
-    <!-- Total Selisih -->
     <div class="total-box">
       <h3>TOTAL SELISIH</h3>
       <div class="total-hasil" id="totalSelisih"><span class="balance">BALANCE</span></div>
@@ -362,7 +442,6 @@
   <!-- ================= GANTUNGAN POS SYSTEM ================= -->
   <div id="gantungan" class="tab-pane">
 
-    <!-- Card Pertamax -->
     <div class="card">
       <div class="card-header blue"><span class="pip blue"></span>PERTAMAX</div>
       <div class="table-wrap">
@@ -385,7 +464,6 @@
       </div>
     </div>
 
-    <!-- Card Pertalite -->
     <div class="card">
       <div class="card-header green"><span class="pip green"></span>PERTALITE</div>
       <div class="table-wrap">
@@ -412,7 +490,6 @@
   <!-- ================= SISA GANTUNGAN ================= -->
   <div id="sisa" class="tab-pane">
 
-    <!-- Card Pertamax -->
     <div class="card">
       <div class="card-header blue"><span class="pip blue"></span>PERTAMAX</div>
       <div class="table-wrap">
@@ -436,7 +513,6 @@
       </div>
     </div>
 
-    <!-- Card Pertalite -->
     <div class="card">
       <div class="card-header green"><span class="pip green"></span>PERTALITE</div>
       <div class="table-wrap">
@@ -477,6 +553,17 @@
 
 <script>
 /* ════════════════════════════════════════════
+   TANGGAL REALTIME
+════════════════════════════════════════════ */
+function updateRealtimeDate() {
+  const now = new Date();
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('realtimeDate').innerText = now.toLocaleDateString('id-ID', options);
+}
+updateRealtimeDate();
+setInterval(updateRealtimeDate, 60000); // perbarui setiap menit
+
+/* ════════════════════════════════════════════
    STORAGE
 ════════════════════════════════════════════ */
 const STORAGE_KEY = 'penerimaan_bbm_spbu3417603';
@@ -494,6 +581,9 @@ function autoSave() {
     const el = document.getElementById(id);
     if (el) data[id] = el.value;
   });
+  // Simpan sopir & kenek
+  data.sopir = document.getElementById('sopirInput').value;
+  data.kenek = document.getElementById('kenekInput').value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   const indicator = document.getElementById('savedIndicator');
   indicator.classList.add('show');
@@ -506,9 +596,12 @@ function loadData() {
   try {
     const data = JSON.parse(raw);
     Object.keys(data).forEach(id => {
+      if (id === 'sopir' || id === 'kenek') return;
       const el = document.getElementById(id);
       if (el) el.value = data[id];
     });
+    document.getElementById('sopirInput').value = data.sopir || '';
+    document.getElementById('kenekInput').value = data.kenek || '';
   } catch (e) {
     console.error('Gagal memuat data', e);
   }
@@ -552,7 +645,6 @@ function hitungBBM() {
     ketPX.className = "hasil-display balance";
   }
 
-  // Summary Pertamax
   let summarySelisihPX = document.getElementById("summarySelisihPX");
   summarySelisihPX.innerText = selisihPX.toFixed(2);
   summarySelisihPX.style.color = selisihPX > 0 ? "var(--pt-green)" : (selisihPX < 0 ? "var(--red)" : "var(--slate)");
@@ -584,7 +676,6 @@ function hitungBBM() {
   summarySelisihPL.innerText = selisihPL.toFixed(2);
   summarySelisihPL.style.color = selisihPL > 0 ? "var(--pt-green)" : (selisihPL < 0 ? "var(--red)" : "var(--slate)");
 
-  // Total Selisih
   let totalSelisih = selisihPX + selisihPL;
   let totalEl = document.getElementById("totalSelisih");
   if (totalSelisih > 0) {
@@ -631,7 +722,6 @@ function hitungPOS() {
     ketSisaPX.className = "hasil-display balance";
   }
 
-  // Summary Gantungan & Sisa
   document.getElementById("summaryDigantungPX").innerText = digantungPX.toFixed(2);
   let summaryKetSisaPX = document.getElementById("summaryKetSisaPX");
   summaryKetSisaPX.innerText = hasilKetPX > 0 ? "TERSISA " + hasilKetPX.toFixed(2) : (hasilKetPX < 0 ? "PENJUALAN " + Math.abs(hasilKetPX).toFixed(2) : "BALANCE");
@@ -694,6 +784,9 @@ function exportPDF() {
 
   const getText = (id) => document.getElementById(id)?.innerText?.trim() || "0.00";
   const getValue = (id) => parseFloat(document.getElementById(id)?.value) || 0;
+
+  const sopir = document.getElementById('sopirInput').value || '-';
+  const kenek = document.getElementById('kenekInput').value || '-';
 
   const penerimaanBody = [
     [
@@ -763,11 +856,12 @@ function exportPDF() {
   pdf.text("PENERIMAAN BBM SPBU 3417603", pageWidth / 2, 20, { align: 'center' });
   pdf.setFontSize(10);
   pdf.setTextColor(100);
-  pdf.text("Sistem Monitoring BBM | Tanggal: " + new Date().toLocaleDateString('id-ID'), pageWidth / 2, 28, { align: 'center' });
+  pdf.text("Sopir: " + sopir + " | Kenek: " + kenek, pageWidth / 2, 28, { align: 'center' });
+  pdf.text("Tanggal: " + document.getElementById('realtimeDate').innerText, pageWidth / 2, 34, { align: 'center' });
   pdf.setDrawColor(29, 78, 216);
-  pdf.line(14, 32, pageWidth - 14, 32);
+  pdf.line(14, 38, pageWidth - 14, 38);
 
-  let yPos = 38;
+  let yPos = 44;
 
   pdf.setFontSize(12);
   pdf.setTextColor(29, 78, 216);

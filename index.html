@@ -42,11 +42,7 @@
     --shadow-md: 0 4px 12px rgba(0, 0, 0, .08), 0 2px 4px rgba(0, 0, 0, .04);
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     background: var(--bg);
@@ -94,9 +90,7 @@
     top: 0;
     z-index: 99;
   }
-  .tabs-wrapper::-webkit-scrollbar {
-    display: none;
-  }
+  .tabs-wrapper::-webkit-scrollbar { display: none; }
   .tab-btn {
     padding: 14px 16px;
     border: none;
@@ -113,25 +107,12 @@
     margin-bottom: -1px;
     white-space: nowrap;
   }
-  .tab-btn:hover {
-    color: var(--text-mid);
-  }
-  .tab-btn.active {
-    color: var(--px-blue);
-    border-bottom-color: var(--px-blue);
-  }
+  .tab-btn:hover { color: var(--text-mid); }
+  .tab-btn.active { color: var(--px-blue); border-bottom-color: var(--px-blue); }
 
-  .content {
-    padding: 16px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .tab-pane {
-    display: none;
-  }
-  .tab-pane.active {
-    display: block;
-  }
+  .content { padding: 16px; max-width: 1200px; margin: 0 auto; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
 
   .card {
     background: var(--surface);
@@ -155,29 +136,18 @@
   .card-header.green { background: var(--pt-green-light); color: var(--pt-green); border-bottom-color: var(--pt-green-mid); }
   .card-header.blue  { background: var(--px-blue-light); color: var(--px-blue); border-bottom-color: var(--px-blue-mid); }
   .card-header.amber { background: var(--amber-light); color: var(--amber); border-bottom-color: #f6d090; }
-  .card-header.slate { background: var(--surface2); color: var(--slate); border-bottom-color: var(--border); }
-  .card-header.red   { background: var(--red-light); color: var(--red); border-bottom-color: #f5b8ba; }
-  .card-header.purple{ background: var(--purple-light); color: var(--purple); border-bottom-color: var(--purple-mid); }
 
   .pip { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .pip.green { background: var(--pt-green); }
   .pip.blue  { background: var(--px-blue); }
   .pip.amber { background: var(--amber); }
-  .pip.slate { background: var(--slate); }
 
-  /* TABLE WRAPPER - tanpa scroll di mobile */
-  .table-wrap {
-    width: 100%;
-    overflow-x: visible;
-  }
+  .table-wrap { width: 100%; overflow-x: visible; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  table { width: 100%; border-collapse: collapse; }
   th {
-    padding: 12px 12px;
-    font-size: 10px;
+    padding: 10px 8px;
+    font-size: 9px;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #fff;
@@ -188,31 +158,20 @@
     text-align: center;
   }
   td {
-    padding: 10px 12px;
+    padding: 8px 8px;
     border-bottom: 1px solid #f0f4f8;
     vertical-align: middle;
     text-align: center;
     font-size: 13px;
   }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #f9fbff; }
-
-  .badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-weight: 700;
-    font-size: 11px;
-  }
-  .badge.green { background: var(--pt-green-light); border: 1px solid var(--pt-green-border); color: var(--pt-green); }
-  .badge.blue  { background: var(--px-blue-light); border: 1px solid var(--px-blue-border); color: var(--px-blue); }
 
   .inp {
     width: 100%;
     background: #fff;
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 10px 12px;
+    padding: 10px 8px;
     border-radius: 8px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
@@ -221,26 +180,12 @@
     text-align: center;
   }
   .inp:focus { border-color: var(--px-blue); box-shadow: 0 0 0 3px rgba(0, 87, 184, .08); }
-  .inp[readonly] { cursor: default; font-weight: 600; background: var(--surface2); }
-  .inp.ro-green { background: var(--pt-green-light); color: var(--pt-green); border-color: var(--pt-green-mid); font-weight: 700; }
-  .inp.ro-blue  { background: var(--px-blue-light); color: var(--px-blue); border-color: var(--px-blue-mid); font-weight: 700; }
-  .inp.ro-slate { background: var(--surface2); color: var(--slate); border-color: var(--border); font-weight: 700; }
-
-  .field-label {
-    font-size: 10px;
-    letter-spacing: .6px;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-bottom: 4px;
-    font-weight: 700;
-    text-align: center;
-  }
 
   .hasil-display {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 700;
-    padding: 10px 12px;
+    padding: 10px 8px;
     background: #eff6ff;
     border-radius: 8px;
     color: #1e3a8a;
@@ -251,6 +196,18 @@
   .hasil-display.plus { background: var(--pt-green-light); color: var(--pt-green); border-color: var(--pt-green-mid); }
   .hasil-display.minus{ background: var(--red-light); color: var(--red); border-color: #f5b8ba; }
   .hasil-display.balance{ background: var(--surface2); color: var(--slate); border-color: var(--border); }
+
+  .card-summary {
+    padding: 10px 16px;
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .card-summary span { font-weight: 700; }
 
   .total-box {
     background: white;
@@ -278,40 +235,23 @@
   .total-hasil .balance{ color: var(--slate); }
 
   .actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 25px;
-    padding: 0 16px;
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 25px; padding: 0 16px;
   }
   .actions button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 10px;
-    background: #1d4ed8;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13px;
-    letter-spacing: .4px;
-    transition: opacity .15s, transform .15s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    padding: 12px 20px; border: none; border-radius: 10px;
+    background: #1d4ed8; color: white; font-weight: 700; cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px;
+    letter-spacing: .4px; transition: opacity .15s, transform .15s;
+    display: flex; align-items: center; gap: 6px;
   }
   .actions button:hover { opacity: .85; transform: translateY(-1px); }
   .actions button.pdf { background: var(--red); }
   .actions button.image { background: var(--purple); }
 
   .footer {
-    background: #0f172a;
-    color: #dbeafe;
-    text-align: center;
-    padding: 18px;
-    font-size: 12px;
-    letter-spacing: .3px;
+    background: #0f172a; color: #dbeafe; text-align: center;
+    padding: 18px; font-size: 12px; letter-spacing: .3px;
     border-top: 1px solid rgba(255,255,255,0.1);
   }
 
@@ -321,58 +261,26 @@
   }
   .saved-indicator.show { opacity: 1; }
 
-  /* ========== RESPONSIVE MOBILE (TANPA SLIDER) ========== */
+  /* RESPONSIVE tanpa slider */
   @media (max-width: 768px) {
-    .table-wrap {
-      overflow-x: visible;
-    }
-    table, thead, tbody, th, td, tr {
-      display: block;
-      width: 100%;
-    }
-    thead {
-      display: none;
-    }
+    .table-wrap { overflow-x: visible; }
+    table, thead, tbody, th, td, tr { display: block; width: 100%; }
+    thead { display: none; }
     tr {
-      margin-bottom: 16px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      background: white;
+      margin-bottom: 0; border: none; border-radius: 0; overflow: visible; background: transparent;
     }
     td {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      border: none;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 10px 14px;
-      text-align: right;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 8px; border: none; border-bottom: 1px solid #e2e8f0;
+      padding: 10px 14px; text-align: right; background: white;
     }
-    td:last-child {
-      border-bottom: none;
-    }
+    td:last-child { border-bottom: none; }
     td::before {
-      content: attr(data-label);
-      font-weight: 700;
-      color: #1d4ed8;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: .5px;
-      flex-shrink: 0;
+      content: attr(data-label); font-weight: 700; color: #1d4ed8;
+      font-size: 10px; text-transform: uppercase; letter-spacing: .5px; flex-shrink: 0;
     }
-
-    /* agar input dan display tidak menyebabkan scroll */
-    .inp {
-      max-width: 140px;
-      text-align: right;
-    }
-    .hasil-display {
-      max-width: 140px;
-      text-align: right;
-      white-space: nowrap;
-    }
+    .inp { max-width: 140px; text-align: right; }
+    .hasil-display { max-width: 140px; text-align: right; }
   }
 </style>
 </head>
@@ -391,18 +299,19 @@
 
 <div class="content">
 
-  <!-- Penerimaan BBM -->
+  <!-- ================= PENERIMAAN BBM ================= -->
   <div id="penerimaan" class="tab-pane active">
+
+    <!-- Card Pertamax -->
     <div class="card">
-      <div class="card-header green"><span class="pip green"></span>Data Penerimaan BBM</div>
+      <div class="card-header blue"><span class="pip blue"></span>PERTAMAX</div>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>PRODUK</th><th>STOK AWAL</th><th>DO</th><th>STOK AKHIR</th><th>STOK AKTUAL</th><th>SELISIH</th><th>KETERANGAN</th></tr>
+            <tr><th>STOK AWAL</th><th>DO</th><th>STOK AKHIR</th><th>STOK AKTUAL</th><th>SELISIH</th><th>KETERANGAN</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td data-label="PRODUK"><span class="badge blue">PERTAMAX</span></td>
               <td data-label="STOK AWAL"><input class="inp" type="number" id="stokSebelumPX" oninput="hitungBBM(); autoSave()"></td>
               <td data-label="DO"><input class="inp" type="number" id="doPX" oninput="hitungBBM(); autoSave()"></td>
               <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPX">0.00</div></td>
@@ -410,8 +319,24 @@
               <td data-label="SELISIH"><div class="hasil-display" id="selisihPX">0.00</div></td>
               <td data-label="KETERANGAN"><div class="hasil-display balance" id="ketPX">BALANCE</div></td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-summary">
+        Selisih Pertamax: <span id="summarySelisihPX" style="color:var(--slate)">0.00</span>
+      </div>
+    </div>
+
+    <!-- Card Pertalite -->
+    <div class="card">
+      <div class="card-header green"><span class="pip green"></span>PERTALITE</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>STOK AWAL</th><th>DO</th><th>STOK AKHIR</th><th>STOK AKTUAL</th><th>SELISIH</th><th>KETERANGAN</th></tr>
+          </thead>
+          <tbody>
             <tr>
-              <td data-label="PRODUK"><span class="badge green">PERTALITE</span></td>
               <td data-label="STOK AWAL"><input class="inp" type="number" id="stokSebelumPL" oninput="hitungBBM(); autoSave()"></td>
               <td data-label="DO"><input class="inp" type="number" id="doPL" oninput="hitungBBM(); autoSave()"></td>
               <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPL">0.00</div></td>
@@ -422,32 +347,54 @@
           </tbody>
         </table>
       </div>
+      <div class="card-summary">
+        Selisih Pertalite: <span id="summarySelisihPL" style="color:var(--slate)">0.00</span>
+      </div>
     </div>
+
+    <!-- Total Selisih -->
     <div class="total-box">
       <h3>TOTAL SELISIH</h3>
       <div class="total-hasil" id="totalSelisih"><span class="balance">BALANCE</span></div>
     </div>
   </div>
 
-  <!-- Gantungan POS -->
+  <!-- ================= GANTUNGAN POS SYSTEM ================= -->
   <div id="gantungan" class="tab-pane">
+
+    <!-- Card Pertamax -->
     <div class="card">
-      <div class="card-header blue"><span class="pip blue"></span>Gantungan POS System</div>
+      <div class="card-header blue"><span class="pip blue"></span>PERTAMAX</div>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>PRODUK</th><th>STOK AWAL</th><th>PENJUALAN</th><th>STOK AKHIR</th><th>DIGANTUNG</th></tr>
+            <tr><th>STOK AWAL</th><th>PENJUALAN</th><th>STOK AKHIR</th><th>DIGANTUNG</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td data-label="PRODUK"><span class="badge blue">PERTAMAX</span></td>
               <td data-label="STOK AWAL"><input class="inp" type="number" id="stokAwalPosPX" oninput="hitungPOS(); autoSave()"></td>
               <td data-label="PENJUALAN"><input class="inp" type="number" id="penjualanPX" oninput="hitungPOS(); autoSave()"></td>
               <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPosPX">0.00</div></td>
               <td data-label="DIGANTUNG"><div class="hasil-display" id="digantungPX">0.00</div></td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-summary">
+        Digantung: <span id="summaryDigantungPX" style="color:var(--slate)">0.00</span>
+      </div>
+    </div>
+
+    <!-- Card Pertalite -->
+    <div class="card">
+      <div class="card-header green"><span class="pip green"></span>PERTALITE</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>STOK AWAL</th><th>PENJUALAN</th><th>STOK AKHIR</th><th>DIGANTUNG</th></tr>
+          </thead>
+          <tbody>
             <tr>
-              <td data-label="PRODUK"><span class="badge green">PERTALITE</span></td>
               <td data-label="STOK AWAL"><input class="inp" type="number" id="stokAwalPosPL" oninput="hitungPOS(); autoSave()"></td>
               <td data-label="PENJUALAN"><input class="inp" type="number" id="penjualanPL" oninput="hitungPOS(); autoSave()"></td>
               <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPosPL">0.00</div></td>
@@ -456,29 +403,49 @@
           </tbody>
         </table>
       </div>
+      <div class="card-summary">
+        Digantung: <span id="summaryDigantungPL" style="color:var(--slate)">0.00</span>
+      </div>
     </div>
   </div>
 
-  <!-- Sisa Gantungan -->
+  <!-- ================= SISA GANTUNGAN ================= -->
   <div id="sisa" class="tab-pane">
+
+    <!-- Card Pertamax -->
     <div class="card">
-      <div class="card-header amber"><span class="pip amber"></span>Sisa Gantungan</div>
+      <div class="card-header blue"><span class="pip blue"></span>PERTAMAX</div>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>PRODUK</th><th>STOK AWAL</th><th>STOK AKHIR</th><th>TOTAL</th><th>SISA GANTUNGAN</th><th>KETERANGAN</th></tr>
+            <tr><th>STOK AWAL</th><th>STOK AKHIR</th><th>TOTAL</th><th>SISA GANTUNGAN</th><th>KETERANGAN</th></tr>
           </thead>
           <tbody>
             <tr>
-              <td data-label="PRODUK"><span class="badge blue">PERTAMAX</span></td>
               <td data-label="STOK AWAL"><div class="hasil-display" id="stokAwalSisaPX">0.00</div></td>
               <td data-label="STOK AKHIR"><input class="inp" type="number" id="stokAkhirSisaPX" oninput="hitungPOS(); autoSave()"></td>
               <td data-label="TOTAL"><div class="hasil-display" id="totalSisaPX">0.00</div></td>
               <td data-label="SISA GANTUNGAN"><div class="hasil-display" id="sisaGantungPX">0.00</div></td>
               <td data-label="KETERANGAN"><div class="hasil-display balance" id="ketSisaPX">BALANCE</div></td>
             </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-summary">
+        Kesimpulan: <span id="summaryKetSisaPX" style="color:var(--slate)">BALANCE</span>
+      </div>
+    </div>
+
+    <!-- Card Pertalite -->
+    <div class="card">
+      <div class="card-header green"><span class="pip green"></span>PERTALITE</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>STOK AWAL</th><th>STOK AKHIR</th><th>TOTAL</th><th>SISA GANTUNGAN</th><th>KETERANGAN</th></tr>
+          </thead>
+          <tbody>
             <tr>
-              <td data-label="PRODUK"><span class="badge green">PERTALITE</span></td>
               <td data-label="STOK AWAL"><div class="hasil-display" id="stokAwalSisaPL">0.00</div></td>
               <td data-label="STOK AKHIR"><input class="inp" type="number" id="stokAkhirSisaPL" oninput="hitungPOS(); autoSave()"></td>
               <td data-label="TOTAL"><div class="hasil-display" id="totalSisaPL">0.00</div></td>
@@ -487,6 +454,9 @@
             </tr>
           </tbody>
         </table>
+      </div>
+      <div class="card-summary">
+        Kesimpulan: <span id="summaryKetSisaPL" style="color:var(--slate)">BALANCE</span>
       </div>
     </div>
   </div>
@@ -556,9 +526,10 @@ function switchTab(id, btn) {
 }
 
 /* ════════════════════════════════════════════
-   PENERIMAAN BBM (FUNGSI ASLI TIDAK DIUBAH)
+   PENERIMAAN BBM (FUNGSI ASLI)
 ════════════════════════════════════════════ */
 function hitungBBM() {
+  // Pertamax
   let stokSebelumPX = parseFloat(document.getElementById("stokSebelumPX").value) || 0;
   let doPX = parseFloat(document.getElementById("doPX").value) || 0;
   let stokAktualPX = parseFloat(document.getElementById("stokAktualPX").value) || 0;
@@ -581,6 +552,12 @@ function hitungBBM() {
     ketPX.className = "hasil-display balance";
   }
 
+  // Summary Pertamax
+  let summarySelisihPX = document.getElementById("summarySelisihPX");
+  summarySelisihPX.innerText = selisihPX.toFixed(2);
+  summarySelisihPX.style.color = selisihPX > 0 ? "var(--pt-green)" : (selisihPX < 0 ? "var(--red)" : "var(--slate)");
+
+  // Pertalite
   let stokSebelumPL = parseFloat(document.getElementById("stokSebelumPL").value) || 0;
   let doPL = parseFloat(document.getElementById("doPL").value) || 0;
   let stokAktualPL = parseFloat(document.getElementById("stokAktualPL").value) || 0;
@@ -603,6 +580,11 @@ function hitungBBM() {
     ketPL.className = "hasil-display balance";
   }
 
+  let summarySelisihPL = document.getElementById("summarySelisihPL");
+  summarySelisihPL.innerText = selisihPL.toFixed(2);
+  summarySelisihPL.style.color = selisihPL > 0 ? "var(--pt-green)" : (selisihPL < 0 ? "var(--red)" : "var(--slate)");
+
+  // Total Selisih
   let totalSelisih = selisihPX + selisihPL;
   let totalEl = document.getElementById("totalSelisih");
   if (totalSelisih > 0) {
@@ -617,10 +599,10 @@ function hitungBBM() {
 }
 
 /* ════════════════════════════════════════════
-   GANTUNGAN POS & SISA (FUNGSI ASLI TIDAK DIUBAH)
+   GANTUNGAN POS & SISA (FUNGSI ASLI)
 ════════════════════════════════════════════ */
 function hitungPOS() {
-  /* ================= PERTAMAX ================= */
+  // Pertamax
   let stokAwalPosPX = parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
   let penjualanPX = parseFloat(document.getElementById("penjualanPX").value) || 0;
   let stokAktualPX = parseFloat(document.getElementById("stokAktualPX").value) || 0;
@@ -649,7 +631,13 @@ function hitungPOS() {
     ketSisaPX.className = "hasil-display balance";
   }
 
-  /* ================= PERTALITE ================= */
+  // Summary Gantungan & Sisa
+  document.getElementById("summaryDigantungPX").innerText = digantungPX.toFixed(2);
+  let summaryKetSisaPX = document.getElementById("summaryKetSisaPX");
+  summaryKetSisaPX.innerText = hasilKetPX > 0 ? "TERSISA " + hasilKetPX.toFixed(2) : (hasilKetPX < 0 ? "PENJUALAN " + Math.abs(hasilKetPX).toFixed(2) : "BALANCE");
+  summaryKetSisaPX.style.color = hasilKetPX > 0 ? "var(--pt-green)" : (hasilKetPX < 0 ? "var(--red)" : "var(--slate)");
+
+  // Pertalite
   let stokAwalPosPL = parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
   let penjualanPL = parseFloat(document.getElementById("penjualanPL").value) || 0;
   let stokAktualPL = parseFloat(document.getElementById("stokAktualPL").value) || 0;
@@ -677,10 +665,15 @@ function hitungPOS() {
     ketSisaPL.innerHTML = "<span style='color:#64748b;font-weight:700'>BALANCE</span>";
     ketSisaPL.className = "hasil-display balance";
   }
+
+  document.getElementById("summaryDigantungPL").innerText = digantungPL.toFixed(2);
+  let summaryKetSisaPL = document.getElementById("summaryKetSisaPL");
+  summaryKetSisaPL.innerText = hasilKetPL > 0 ? "TERSISA " + hasilKetPL.toFixed(2) : (hasilKetPL < 0 ? "PENJUALAN " + Math.abs(hasilKetPL).toFixed(2) : "BALANCE");
+  summaryKetSisaPL.style.color = hasilKetPL > 0 ? "var(--pt-green)" : (hasilKetPL < 0 ? "var(--red)" : "var(--slate)");
 }
 
 /* ════════════════════════════════════════════
-   EXPORT TXT (tidak diubah)
+   EXPORT TXT
 ════════════════════════════════════════════ */
 function exportTXT() {
   const blob = new Blob(
@@ -694,7 +687,7 @@ function exportTXT() {
 }
 
 /* ════════════════════════════════════════════
-   EXPORT PDF (RAPIH)
+   EXPORT PDF
 ════════════════════════════════════════════ */
 function exportPDF() {
   hitungBBM();
@@ -787,10 +780,7 @@ function exportPDF() {
     theme: 'grid',
     headStyles: { fillColor: [29, 78, 216], textColor: 255, fontSize: 9, halign: 'center' },
     bodyStyles: { fontSize: 9, halign: 'center', textColor: 30 },
-    columnStyles: {
-      0: { halign: 'left' },
-      6: { halign: 'left' }
-    }
+    columnStyles: { 0: { halign: 'left' }, 6: { halign: 'left' } }
   });
   yPos = pdf.lastAutoTable.finalY + 8;
   pdf.setFontSize(10);
@@ -839,7 +829,7 @@ function exportPDF() {
 }
 
 /* ════════════════════════════════════════════
-   EXPORT GAMBAR (tidak diubah)
+   EXPORT GAMBAR
 ════════════════════════════════════════════ */
 async function exportImage() {
   const canvas = await html2canvas(document.body);

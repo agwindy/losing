@@ -3,813 +3,836 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penerimaan BBM SPBU 3417603</title>
 
-<title>PENERIMAAN BBM SPBU 3417603</title>
-
+<!-- Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Plugin AutoTable -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+  :root {
+    --bg: #f0f4f8;
+    --surface: #ffffff;
+    --surface2: #f7fafc;
+    --border: #dde3ec;
+    --border2: #c8d3e0;
+    --text: #1a2332;
+    --text-mid: #4a5e72;
+    --text-dim: #8fa3b8;
+    --pt-green: #1da462;
+    --pt-green-light: #e8f7f0;
+    --pt-green-mid: #b8e8d0;
+    --pt-green-border: #7dd4a8;
+    --px-blue: #0057b8;
+    --px-blue-light: #e6eef9;
+    --px-blue-mid: #b3cef0;
+    --px-blue-border: #6aa3e0;
+    --red: #e5363b;
+    --red-light: #fdeaea;
+    --amber: #d97706;
+    --amber-light: #fef3e2;
+    --purple: #7c3aed;
+    --purple-light: #f3effe;
+    --purple-mid: #c4b5fd;
+    --purple-border: #a78bfa;
+    --slate: #64748b;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, .08), 0 2px 4px rgba(0, 0, 0, .04);
+  }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-body{
-  font-family:'Segoe UI',sans-serif;
-  background:#eef5ff;
-  color:#1e293b;
-}
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    font-size: 14px;
+  }
 
-.header{
-  background:linear-gradient(135deg,#0f172a,#1d4ed8);
-  color:white;
-  text-align:center;
-  padding:30px 20px;
-}
+  .header {
+    background: linear-gradient(135deg, #0f172a, #1d4ed8);
+    color: white;
+    text-align: center;
+    padding: 28px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header h1 {
+    font-size: clamp(20px, 4vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .header p {
+    margin-top: 6px;
+    color: #dbeafe;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
 
-.header h1{
-  font-size:clamp(24px,5vw,38px);
-}
+  .tabs-wrapper {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+  }
+  .tabs-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-btn {
+    padding: 14px 16px;
+    border: none;
+    background: none;
+    color: var(--text-dim);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all .15s;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-bottom: -1px;
+    white-space: nowrap;
+  }
+  .tab-btn:hover {
+    color: var(--text-mid);
+  }
+  .tab-btn.active {
+    color: var(--px-blue);
+    border-bottom-color: var(--px-blue);
+  }
 
-.header p{
-  margin-top:8px;
-  color:#dbeafe;
-}
+  .content {
+    padding: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active {
+    display: block;
+  }
 
-.container{
-  max-width:1400px;
-  margin:auto;
-  padding:20px;
-}
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .card-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+  }
+  .card-header.green { background: var(--pt-green-light); color: var(--pt-green); border-bottom-color: var(--pt-green-mid); }
+  .card-header.blue  { background: var(--px-blue-light); color: var(--px-blue); border-bottom-color: var(--px-blue-mid); }
+  .card-header.amber { background: var(--amber-light); color: var(--amber); border-bottom-color: #f6d090; }
+  .card-header.slate { background: var(--surface2); color: var(--slate); border-bottom-color: var(--border); }
+  .card-header.red   { background: var(--red-light); color: var(--red); border-bottom-color: #f5b8ba; }
+  .card-header.purple{ background: var(--purple-light); color: var(--purple); border-bottom-color: var(--purple-mid); }
 
-.card{
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  margin-bottom:25px;
-  box-shadow:0 6px 18px rgba(37,99,235,0.08);
-}
+  .pip { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .pip.green { background: var(--pt-green); }
+  .pip.blue  { background: var(--px-blue); }
+  .pip.amber { background: var(--amber); }
+  .pip.slate { background: var(--slate); }
 
-h2{
-  text-align:center;
-  margin-bottom:20px;
-  color:#1d4ed8;
-}
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+  }
+  th {
+    padding: 12px 12px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #1d4ed8;
+    border: none;
+    font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f4f8;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 13px;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f9fbff; }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-}
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 11px;
+  }
+  .badge.green { background: var(--pt-green-light); border: 1px solid var(--pt-green-border); color: var(--pt-green); }
+  .badge.blue  { background: var(--px-blue-light); border: 1px solid var(--px-blue-border); color: var(--px-blue); }
 
-th,td{
-  border:1px solid #dbeafe;
-  padding:12px;
-  text-align:center;
-}
+  .inp {
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+    text-align: center;
+  }
+  .inp:focus { border-color: var(--px-blue); box-shadow: 0 0 0 3px rgba(0, 87, 184, .08); }
+  .inp[readonly] { cursor: default; font-weight: 600; background: var(--surface2); }
+  .inp.ro-green { background: var(--pt-green-light); color: var(--pt-green); border-color: var(--pt-green-mid); font-weight: 700; }
+  .inp.ro-blue  { background: var(--px-blue-light); color: var(--px-blue); border-color: var(--px-blue-mid); font-weight: 700; }
+  .inp.ro-slate { background: var(--surface2); color: var(--slate); border-color: var(--border); font-weight: 700; }
 
-th{
-  background:#1d4ed8;
-  color:white;
-}
+  .field-label {
+    font-size: 10px;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+    font-weight: 700;
+    text-align: center;
+  }
 
-input{
-  width:100%;
-  padding:10px;
-  border-radius:10px;
-  border:1px solid #cbd5e1;
-  text-align:center;
-}
+  .hasil-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 12px;
+    background: #eff6ff;
+    border-radius: 8px;
+    color: #1e3a8a;
+    border: 1px solid #bfdbfe;
+    text-align: center;
+  }
+  .hasil-display.plus { background: var(--pt-green-light); color: var(--pt-green); border-color: var(--pt-green-mid); }
+  .hasil-display.minus{ background: var(--red-light); color: var(--red); border-color: #f5b8ba; }
+  .hasil-display.balance{ background: var(--surface2); color: var(--slate); border-color: var(--border); }
 
-.hasil{
-  background:#eff6ff;
-  font-weight:bold;
-  color:#1e3a8a;
-}
+  .total-box {
+    background: white;
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+  }
+  .total-box h3 {
+    color: var(--text-dim);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-bottom: 6px;
+  }
+  .total-hasil {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .total-hasil .plus { color: var(--pt-green); }
+  .total-hasil .minus{ color: var(--red); }
+  .total-hasil .balance{ color: var(--slate); }
 
-.plus{
-  color:#16a34a;
-  font-weight:bold;
-}
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    padding: 0 16px;
+  }
+  .actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #1d4ed8;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: .4px;
+    transition: opacity .15s, transform .15s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .actions button:hover { opacity: .85; transform: translateY(-1px); }
+  .actions button.pdf { background: var(--red); }
+  .actions button.image { background: var(--purple); }
 
-.minus{
-  color:#dc2626;
-  font-weight:bold;
-}
+  .footer {
+    background: #0f172a;
+    color: #dbeafe;
+    text-align: center;
+    padding: 18px;
+    font-size: 12px;
+    letter-spacing: .3px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
 
-.balance{
-  color:#2563eb;
-  font-weight:bold;
-}
+  .saved-indicator {
+    font-size: 10px; color: var(--pt-green); text-align: center;
+    margin-top: 4px; opacity: 0; transition: opacity 0.3s;
+  }
+  .saved-indicator.show { opacity: 1; }
 
-.total-box{
-  background:white;
-  border-radius:18px;
-  padding:12px;
-  margin-bottom:25px;
-  text-align:center;
-  box-shadow:0 6px 18px rgba(37,99,235,0.08);
-}
-
-.total-box h3{
-  color:#1d4ed8;
-  font-size:14px;
-}
-
-.total-hasil{
-  margin-top:5px;
-  font-size:15px;
-  font-weight:bold;
-}
-
-.actions{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
-  margin-bottom:25px;
-}
-
-.actions button{
-  padding:12px 20px;
-  border:none;
-  border-radius:12px;
-  background:#1d4ed8;
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.footer{
-  background:#0f172a;
-  color:#dbeafe;
-  text-align:center;
-  padding:18px;
-}
-
-@media(max-width:768px){
-
-table,
-thead,
-tbody,
-th,
-td,
-tr{
-  display:block;
-  width:100%;
-}
-
-thead{
-  display:none;
-}
-
-tr{
-  margin-bottom:18px;
-  border:1px solid #dbeafe;
-  border-radius:16px;
-  overflow:hidden;
-}
-
-td{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  border:none;
-  border-bottom:1px solid #e2e8f0;
-}
-
-td:last-child{
-  border-bottom:none;
-}
-
-td::before{
-  content:attr(data-label);
-  font-weight:bold;
-  color:#1d4ed8;
-}
-
-input{
-  max-width:140px;
-}
-
-.actions button{
-  width:100%;
-}
-
-}
-
+  @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr { display: block; width: 100%; }
+    thead { display: none; }
+    tr {
+      margin-bottom: 16px; border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; background: white;
+    }
+    td {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 8px; border: none; border-bottom: 1px solid #e2e8f0;
+      padding: 10px 14px; text-align: right;
+    }
+    td:last-child { border-bottom: none; }
+    td::before {
+      content: attr(data-label); font-weight: 700; color: #1d4ed8;
+      font-size: 10px; text-transform: uppercase; letter-spacing: .5px;
+      flex-shrink: 0;
+    }
+    .inp { max-width: 140px; text-align: right; }
+    .hasil-display { max-width: 140px; text-align: right; }
+  }
 </style>
 </head>
-
 <body>
 
 <div class="header">
-<h1>PENERIMAAN BBM SPBU 3417603</h1>
-<p>Sistem Monitoring BBM</p>
+  <h1>PENERIMAAN BBM SPBU 3417603</h1>
+  <p>Sistem Monitoring BBM</p>
 </div>
 
-<div class="container">
-
-<!-- ================= PENERIMAAN BBM ================= -->
-
-<div class="card">
-
-<h2>PENERIMAAN BBM</h2>
-
-<table>
-
-<thead>
-<tr>
-<th>PRODUK</th>
-<th>STOK AWAL</th>
-<th>DO</th>
-<th>STOK AKHIR</th>
-<th>STOK AKTUAL</th>
-<th>SELISIH</th>
-<th>KETERANGAN</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-
-<td data-label="PRODUK">PERTAMAX</td>
-
-<td data-label="STOK AWAL">
-<input type="number" id="stokSebelumPX" oninput="hitungBBM()">
-</td>
-
-<td data-label="DO">
-<input type="number" id="doPX" oninput="hitungBBM()">
-</td>
-
-<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPX">
-0.00
-</td>
-
-<td data-label="STOK AKTUAL">
-<input type="number" id="stokAktualPX" oninput="hitungBBM()">
-</td>
-
-<td data-label="SELISIH" class="hasil" id="selisihPX">
-0.00
-</td>
-
-<td data-label="KETERANGAN" class="hasil" id="ketPX">
-BALANCE
-</td>
-
-</tr>
-
-<tr>
-
-<td data-label="PRODUK">PERTALITE</td>
-
-<td data-label="STOK AWAL">
-<input type="number" id="stokSebelumPL" oninput="hitungBBM()">
-</td>
-
-<td data-label="DO">
-<input type="number" id="doPL" oninput="hitungBBM()">
-</td>
-
-<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPL">
-0.00
-</td>
-
-<td data-label="STOK AKTUAL">
-<input type="number" id="stokAktualPL" oninput="hitungBBM()">
-</td>
-
-<td data-label="SELISIH" class="hasil" id="selisihPL">
-0.00
-</td>
-
-<td data-label="KETERANGAN" class="hasil" id="ketPL">
-BALANCE
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
+<div class="tabs-wrapper">
+  <button class="tab-btn active" onclick="switchTab('penerimaan', this)">Penerimaan BBM</button>
+  <button class="tab-btn" onclick="switchTab('gantungan', this)">Gantungan POS</button>
+  <button class="tab-btn" onclick="switchTab('sisa', this)">Sisa Gantungan</button>
 </div>
 
-<!-- ================= TOTAL SELISIH ================= -->
+<div class="content">
 
-<div class="total-box">
+  <!-- Penerimaan BBM -->
+  <div id="penerimaan" class="tab-pane active">
+    <div class="card">
+      <div class="card-header green"><span class="pip green"></span>Data Penerimaan BBM</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>PRODUK</th><th>STOK AWAL</th><th>DO</th><th>STOK AKHIR</th><th>STOK AKTUAL</th><th>SELISIH</th><th>KETERANGAN</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="PRODUK"><span class="badge blue">PERTAMAX</span></td>
+              <td data-label="STOK AWAL"><input class="inp" type="number" id="stokSebelumPX" oninput="hitungBBM(); autoSave()"></td>
+              <td data-label="DO"><input class="inp" type="number" id="doPX" oninput="hitungBBM(); autoSave()"></td>
+              <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPX">0.00</div></td>
+              <td data-label="STOK AKTUAL"><input class="inp" type="number" id="stokAktualPX" oninput="hitungBBM(); autoSave()"></td>
+              <td data-label="SELISIH"><div class="hasil-display" id="selisihPX">0.00</div></td>
+              <td data-label="KETERANGAN"><div class="hasil-display balance" id="ketPX">BALANCE</div></td>
+            </tr>
+            <tr>
+              <td data-label="PRODUK"><span class="badge green">PERTALITE</span></td>
+              <td data-label="STOK AWAL"><input class="inp" type="number" id="stokSebelumPL" oninput="hitungBBM(); autoSave()"></td>
+              <td data-label="DO"><input class="inp" type="number" id="doPL" oninput="hitungBBM(); autoSave()"></td>
+              <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPL">0.00</div></td>
+              <td data-label="STOK AKTUAL"><input class="inp" type="number" id="stokAktualPL" oninput="hitungBBM(); autoSave()"></td>
+              <td data-label="SELISIH"><div class="hasil-display" id="selisihPL">0.00</div></td>
+              <td data-label="KETERANGAN"><div class="hasil-display balance" id="ketPL">BALANCE</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="total-box">
+      <h3>TOTAL SELISIH</h3>
+      <div class="total-hasil" id="totalSelisih"><span class="balance">BALANCE</span></div>
+    </div>
+  </div>
 
-<h3>TOTAL SELISIH</h3>
+  <!-- Gantungan POS -->
+  <div id="gantungan" class="tab-pane">
+    <div class="card">
+      <div class="card-header blue"><span class="pip blue"></span>Gantungan POS System</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>PRODUK</th><th>STOK AWAL</th><th>PENJUALAN</th><th>STOK AKHIR</th><th>DIGANTUNG</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="PRODUK"><span class="badge blue">PERTAMAX</span></td>
+              <td data-label="STOK AWAL"><input class="inp" type="number" id="stokAwalPosPX" oninput="hitungPOS(); autoSave()"></td>
+              <td data-label="PENJUALAN"><input class="inp" type="number" id="penjualanPX" oninput="hitungPOS(); autoSave()"></td>
+              <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPosPX">0.00</div></td>
+              <td data-label="DIGANTUNG"><div class="hasil-display" id="digantungPX">0.00</div></td>
+            </tr>
+            <tr>
+              <td data-label="PRODUK"><span class="badge green">PERTALITE</span></td>
+              <td data-label="STOK AWAL"><input class="inp" type="number" id="stokAwalPosPL" oninput="hitungPOS(); autoSave()"></td>
+              <td data-label="PENJUALAN"><input class="inp" type="number" id="penjualanPL" oninput="hitungPOS(); autoSave()"></td>
+              <td data-label="STOK AKHIR"><div class="hasil-display" id="stokAkhirPosPL">0.00</div></td>
+              <td data-label="DIGANTUNG"><div class="hasil-display" id="digantungPL">0.00</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<div class="total-hasil" id="totalSelisih">
-BALANCE
-</div>
-
-</div>
-
-<!-- ================= GANTUNGAN POS SYSTEM ================= -->
-
-<div class="card">
-
-<h2>GANTUNGAN POS SYSTEM</h2>
-
-<table>
-
-<thead>
-<tr>
-<th>PRODUK</th>
-<th>STOK AWAL</th>
-<th>PENJUALAN</th>
-<th>STOK AKHIR</th>
-<th>DIGANTUNG</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-
-<td data-label="PRODUK">PERTAMAX</td>
-
-<td data-label="STOK AWAL">
-<input type="number" id="stokAwalPosPX" oninput="hitungPOS()">
-</td>
-
-<td data-label="PENJUALAN">
-<input type="number" id="penjualanPX" oninput="hitungPOS()">
-</td>
-
-<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPosPX">
-0.00
-</td>
-
-<td data-label="DIGANTUNG" class="hasil" id="digantungPX">
-0.00
-</td>
-
-</tr>
-
-<tr>
-
-<td data-label="PRODUK">PERTALITE</td>
-
-<td data-label="STOK AWAL">
-<input type="number" id="stokAwalPosPL" oninput="hitungPOS()">
-</td>
-
-<td data-label="PENJUALAN">
-<input type="number" id="penjualanPL" oninput="hitungPOS()">
-</td>
-
-<td data-label="STOK AKHIR" class="hasil" id="stokAkhirPosPL">
-0.00
-</td>
-
-<td data-label="DIGANTUNG" class="hasil" id="digantungPL">
-0.00
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<!-- ================= SISA GANTUNGAN ================= -->
-
-<div class="card">
-
-<h2>SISA GANTUNGAN</h2>
-
-<table>
-
-<thead>
-<tr>
-<th>PRODUK</th>
-<th>STOK AWAL</th>
-<th>STOK AKHIR</th>
-<th>TOTAL</th>
-<th>SISA GANTUNGAN</th>
-<th>KETERANGAN</th>
-</tr>
-</thead>
-
-<tbody>
-
-<tr>
-
-<td data-label="PRODUK">PERTAMAX</td>
-
-<td data-label="STOK AWAL" class="hasil" id="stokAwalSisaPX">
-0.00
-</td>
-
-<td data-label="STOK AKHIR">
-<input type="number" id="stokAkhirSisaPX" oninput="hitungPOS()">
-</td>
-
-<td data-label="TOTAL" class="hasil" id="totalSisaPX">
-0.00
-</td>
-
-<td data-label="SISA GANTUNGAN" class="hasil" id="sisaGantungPX">
-0.00
-</td>
-
-<td data-label="KETERANGAN" class="hasil" id="ketSisaPX">
-BALANCE
-</td>
-
-</tr>
-
-<tr>
-
-<td data-label="PRODUK">PERTALITE</td>
-
-<td data-label="STOK AWAL" class="hasil" id="stokAwalSisaPL">
-0.00
-</td>
-
-<td data-label="STOK AKHIR">
-<input type="number" id="stokAkhirSisaPL" oninput="hitungPOS()">
-</td>
-
-<td data-label="TOTAL" class="hasil" id="totalSisaPL">
-0.00
-</td>
-
-<td data-label="SISA GANTUNGAN" class="hasil" id="sisaGantungPL">
-0.00
-</td>
-
-<td data-label="KETERANGAN" class="hasil" id="ketSisaPL">
-BALANCE
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
+  <!-- Sisa Gantungan -->
+  <div id="sisa" class="tab-pane">
+    <div class="card">
+      <div class="card-header amber"><span class="pip amber"></span>Sisa Gantungan</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>PRODUK</th><th>STOK AWAL</th><th>STOK AKHIR</th><th>TOTAL</th><th>SISA GANTUNGAN</th><th>KETERANGAN</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="PRODUK"><span class="badge blue">PERTAMAX</span></td>
+              <td data-label="STOK AWAL"><div class="hasil-display" id="stokAwalSisaPX">0.00</div></td>
+              <td data-label="STOK AKHIR"><input class="inp" type="number" id="stokAkhirSisaPX" oninput="hitungPOS(); autoSave()"></td>
+              <td data-label="TOTAL"><div class="hasil-display" id="totalSisaPX">0.00</div></td>
+              <td data-label="SISA GANTUNGAN"><div class="hasil-display" id="sisaGantungPX">0.00</div></td>
+              <td data-label="KETERANGAN"><div class="hasil-display balance" id="ketSisaPX">BALANCE</div></td>
+            </tr>
+            <tr>
+              <td data-label="PRODUK"><span class="badge green">PERTALITE</span></td>
+              <td data-label="STOK AWAL"><div class="hasil-display" id="stokAwalSisaPL">0.00</div></td>
+              <td data-label="STOK AKHIR"><input class="inp" type="number" id="stokAkhirSisaPL" oninput="hitungPOS(); autoSave()"></td>
+              <td data-label="TOTAL"><div class="hasil-display" id="totalSisaPL">0.00</div></td>
+              <td data-label="SISA GANTUNGAN"><div class="hasil-display" id="sisaGantungPL">0.00</div></td>
+              <td data-label="KETERANGAN"><div class="hasil-display balance" id="ketSisaPL">BALANCE</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
 </div>
 
 <div class="actions">
-
-<button onclick="exportTXT()">
-Export TXT
-</button>
-
-<button onclick="exportPDF()">
-Export PDF
-</button>
-
-<button onclick="exportImage()">
-Export Gambar
-</button>
-
+  <button onclick="exportTXT()">📄 Export TXT</button>
+  <button class="pdf" onclick="exportPDF()">📑 Export PDF</button>
+  <button class="image" onclick="exportImage()">🖼️ Export Gambar</button>
 </div>
 
+<div class="saved-indicator" id="savedIndicator">Data tersimpan otomatis</div>
+
 <div class="footer">
-© 2026 SPBU 3417603 | Made With Love By Ag Windy
+  © 2026 SPBU 3417603 | Made With Love By Ag Windy
 </div>
 
 <script>
+/* ════════════════════════════════════════════
+   STORAGE
+════════════════════════════════════════════ */
+const STORAGE_KEY = 'penerimaan_bbm_spbu3417603';
 
-/* ================= PENERIMAAN BBM ================= */
-
-function hitungBBM(){
-
-let stokSebelumPX =
-parseFloat(document.getElementById("stokSebelumPX").value) || 0;
-
-let doPX =
-parseFloat(document.getElementById("doPX").value) || 0;
-
-let stokAktualPX =
-parseFloat(document.getElementById("stokAktualPX").value) || 0;
-
-let stokAkhirPX =
-stokSebelumPX + doPX;
-
-let selisihPX =
-stokAktualPX - stokAkhirPX;
-
-document.getElementById("stokAkhirPX").innerText =
-stokAkhirPX.toFixed(2);
-
-document.getElementById("selisihPX").innerText =
-selisihPX.toFixed(2);
-
-document.getElementById("stokAwalSisaPX").innerText =
-stokAktualPX.toFixed(2);
-
-if(selisihPX > 0){
-
-document.getElementById("ketPX").innerHTML =
-"<span class='plus'>PLUS</span>";
-
-}
-else if(selisihPX < 0){
-
-document.getElementById("ketPX").innerHTML =
-"<span class='minus'>MINUS</span>";
-
-}
-else{
-
-document.getElementById("ketPX").innerHTML =
-"<span class='balance'>BALANCE</span>";
-
+function autoSave() {
+  const data = {};
+  const inputIds = [
+    'stokSebelumPX', 'doPX', 'stokAktualPX',
+    'stokSebelumPL', 'doPL', 'stokAktualPL',
+    'stokAwalPosPX', 'penjualanPX',
+    'stokAwalPosPL', 'penjualanPL',
+    'stokAkhirSisaPX', 'stokAkhirSisaPL'
+  ];
+  inputIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.value;
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  const indicator = document.getElementById('savedIndicator');
+  indicator.classList.add('show');
+  setTimeout(() => indicator.classList.remove('show'), 1200);
 }
 
-let stokSebelumPL =
-parseFloat(document.getElementById("stokSebelumPL").value) || 0;
-
-let doPL =
-parseFloat(document.getElementById("doPL").value) || 0;
-
-let stokAktualPL =
-parseFloat(document.getElementById("stokAktualPL").value) || 0;
-
-let stokAkhirPL =
-stokSebelumPL + doPL;
-
-let selisihPL =
-stokAktualPL - stokAkhirPL;
-
-document.getElementById("stokAkhirPL").innerText =
-stokAkhirPL.toFixed(2);
-
-document.getElementById("selisihPL").innerText =
-selisihPL.toFixed(2);
-
-document.getElementById("stokAwalSisaPL").innerText =
-stokAktualPL.toFixed(2);
-
-if(selisihPL > 0){
-
-document.getElementById("ketPL").innerHTML =
-"<span class='plus'>PLUS</span>";
-
-}
-else if(selisihPL < 0){
-
-document.getElementById("ketPL").innerHTML =
-"<span class='minus'>MINUS</span>";
-
-}
-else{
-
-document.getElementById("ketPL").innerHTML =
-"<span class='balance'>BALANCE</span>";
-
+function loadData() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    Object.keys(data).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = data[id];
+    });
+  } catch (e) {
+    console.error('Gagal memuat data', e);
+  }
 }
 
-let totalSelisih =
-selisihPX + selisihPL;
-
-if(totalSelisih > 0){
-
-document.getElementById("totalSelisih").innerHTML =
-"<span class='plus'>TOTAL +" +
-totalSelisih.toFixed(2) +
-"</span>";
-
-}
-else if(totalSelisih < 0){
-
-document.getElementById("totalSelisih").innerHTML =
-"<span class='minus'>TOTAL -" +
-Math.abs(totalSelisih).toFixed(2) +
-"</span>";
-
-}
-else{
-
-document.getElementById("totalSelisih").innerHTML =
-"<span class='balance'>BALANCE</span>";
-
+/* ════════════════════════════════════════════
+   TAB SWITCHING
+════════════════════════════════════════════ */
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  hitungBBM();
 }
 
-hitungPOS();
+/* ════════════════════════════════════════════
+   PENERIMAAN BBM (FUNGSI ASLI TIDAK DIUBAH)
+════════════════════════════════════════════ */
+function hitungBBM() {
+  let stokSebelumPX = parseFloat(document.getElementById("stokSebelumPX").value) || 0;
+  let doPX = parseFloat(document.getElementById("doPX").value) || 0;
+  let stokAktualPX = parseFloat(document.getElementById("stokAktualPX").value) || 0;
+  let stokAkhirPX = stokSebelumPX + doPX;
+  let selisihPX = stokAktualPX - stokAkhirPX;
 
+  document.getElementById("stokAkhirPX").innerText = stokAkhirPX.toFixed(2);
+  document.getElementById("selisihPX").innerText = selisihPX.toFixed(2);
+  document.getElementById("stokAwalSisaPX").innerText = stokAktualPX.toFixed(2);
+
+  let ketPX = document.getElementById("ketPX");
+  if (selisihPX > 0) {
+    ketPX.innerHTML = "<span style='color:#1da462;font-weight:700'>PLUS</span>";
+    ketPX.className = "hasil-display plus";
+  } else if (selisihPX < 0) {
+    ketPX.innerHTML = "<span style='color:#e5363b;font-weight:700'>MINUS</span>";
+    ketPX.className = "hasil-display minus";
+  } else {
+    ketPX.innerHTML = "<span style='color:#64748b;font-weight:700'>BALANCE</span>";
+    ketPX.className = "hasil-display balance";
+  }
+
+  let stokSebelumPL = parseFloat(document.getElementById("stokSebelumPL").value) || 0;
+  let doPL = parseFloat(document.getElementById("doPL").value) || 0;
+  let stokAktualPL = parseFloat(document.getElementById("stokAktualPL").value) || 0;
+  let stokAkhirPL = stokSebelumPL + doPL;
+  let selisihPL = stokAktualPL - stokAkhirPL;
+
+  document.getElementById("stokAkhirPL").innerText = stokAkhirPL.toFixed(2);
+  document.getElementById("selisihPL").innerText = selisihPL.toFixed(2);
+  document.getElementById("stokAwalSisaPL").innerText = stokAktualPL.toFixed(2);
+
+  let ketPL = document.getElementById("ketPL");
+  if (selisihPL > 0) {
+    ketPL.innerHTML = "<span style='color:#1da462;font-weight:700'>PLUS</span>";
+    ketPL.className = "hasil-display plus";
+  } else if (selisihPL < 0) {
+    ketPL.innerHTML = "<span style='color:#e5363b;font-weight:700'>MINUS</span>";
+    ketPL.className = "hasil-display minus";
+  } else {
+    ketPL.innerHTML = "<span style='color:#64748b;font-weight:700'>BALANCE</span>";
+    ketPL.className = "hasil-display balance";
+  }
+
+  let totalSelisih = selisihPX + selisihPL;
+  let totalEl = document.getElementById("totalSelisih");
+  if (totalSelisih > 0) {
+    totalEl.innerHTML = "<span class='plus'>TOTAL +" + totalSelisih.toFixed(2) + "</span>";
+  } else if (totalSelisih < 0) {
+    totalEl.innerHTML = "<span class='minus'>TOTAL -" + Math.abs(totalSelisih).toFixed(2) + "</span>";
+  } else {
+    totalEl.innerHTML = "<span class='balance'>BALANCE</span>";
+  }
+
+  hitungPOS();
 }
 
-/* ================= GANTUNGAN POS ================= */
+/* ════════════════════════════════════════════
+   GANTUNGAN POS & SISA (FUNGSI ASLI TIDAK DIUBAH)
+════════════════════════════════════════════ */
+function hitungPOS() {
+  /* ================= PERTAMAX ================= */
+  let stokAwalPosPX = parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
+  let penjualanPX = parseFloat(document.getElementById("penjualanPX").value) || 0;
+  let stokAktualPX = parseFloat(document.getElementById("stokAktualPX").value) || 0;
+  let stokAkhirPosPX = stokAwalPosPX - penjualanPX;
+  document.getElementById("stokAkhirPosPX").innerText = stokAkhirPosPX.toFixed(2);
 
-function hitungPOS(){
+  let digantungPX = stokAktualPX - stokAkhirPosPX;
+  document.getElementById("digantungPX").innerText = digantungPX.toFixed(2);
+  document.getElementById("stokAwalSisaPX").innerText = stokAktualPX.toFixed(2);
 
-/* ================= PERTAMAX ================= */
+  let stokAkhirSisaPX = parseFloat(document.getElementById("stokAkhirSisaPX").value) || 0;
+  let totalPX = stokAktualPX - stokAkhirSisaPX;
+  document.getElementById("totalSisaPX").innerText = totalPX.toFixed(2);
+  document.getElementById("sisaGantungPX").innerText = digantungPX.toFixed(2);
 
-let stokAwalPosPX =
-parseFloat(document.getElementById("stokAwalPosPX").value) || 0;
+  let hasilKetPX = digantungPX - totalPX;
+  let ketSisaPX = document.getElementById("ketSisaPX");
+  if (hasilKetPX > 0) {
+    ketSisaPX.innerHTML = "<span style='color:#1da462;font-weight:700'>TERSISA " + hasilKetPX.toFixed(2) + "</span>";
+    ketSisaPX.className = "hasil-display plus";
+  } else if (hasilKetPX < 0) {
+    ketSisaPX.innerHTML = "<span style='color:#e5363b;font-weight:700'>PENJUALAN " + Math.abs(hasilKetPX).toFixed(2) + "</span>";
+    ketSisaPX.className = "hasil-display minus";
+  } else {
+    ketSisaPX.innerHTML = "<span style='color:#64748b;font-weight:700'>BALANCE</span>";
+    ketSisaPX.className = "hasil-display balance";
+  }
 
-let penjualanPX =
-parseFloat(document.getElementById("penjualanPX").value) || 0;
+  /* ================= PERTALITE ================= */
+  let stokAwalPosPL = parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
+  let penjualanPL = parseFloat(document.getElementById("penjualanPL").value) || 0;
+  let stokAktualPL = parseFloat(document.getElementById("stokAktualPL").value) || 0;
+  let stokAkhirPosPL = stokAwalPosPL - penjualanPL;
+  document.getElementById("stokAkhirPosPL").innerText = stokAkhirPosPL.toFixed(2);
 
-let stokAktualPX =
-parseFloat(document.getElementById("stokAktualPX").value) || 0;
+  let digantungPL = stokAktualPL - stokAkhirPosPL;
+  document.getElementById("digantungPL").innerText = digantungPL.toFixed(2);
+  document.getElementById("stokAwalSisaPL").innerText = stokAktualPL.toFixed(2);
 
-let stokAkhirPosPX =
-stokAwalPosPX - penjualanPX;
+  let stokAkhirSisaPL = parseFloat(document.getElementById("stokAkhirSisaPL").value) || 0;
+  let totalPL = stokAktualPL - stokAkhirSisaPL;
+  document.getElementById("totalSisaPL").innerText = totalPL.toFixed(2);
+  document.getElementById("sisaGantungPL").innerText = digantungPL.toFixed(2);
 
-document.getElementById("stokAkhirPosPX").innerText =
-stokAkhirPosPX.toFixed(2);
-
-let digantungPX =
-stokAktualPX - stokAkhirPosPX;
-
-document.getElementById("digantungPX").innerText =
-digantungPX.toFixed(2);
-
-document.getElementById("stokAwalSisaPX").innerText =
-stokAktualPX.toFixed(2);
-
-let stokAkhirSisaPX =
-parseFloat(document.getElementById("stokAkhirSisaPX").value) || 0;
-
-let totalPX =
-stokAktualPX - stokAkhirSisaPX;
-
-document.getElementById("totalSisaPX").innerText =
-totalPX.toFixed(2);
-
-document.getElementById("sisaGantungPX").innerText =
-digantungPX.toFixed(2);
-
-/* ================= REVISI TERBARU ================= */
-/* TERSISA & PENJUALAN */
-
-let hasilKetPX =
-digantungPX - totalPX;
-
-if(hasilKetPX > 0){
-
-document.getElementById("ketSisaPX").innerHTML =
-"<span class='plus'>TERSISA " +
-hasilKetPX.toFixed(2) +
-"</span>";
-
-}
-else if(hasilKetPX < 0){
-
-document.getElementById("ketSisaPX").innerHTML =
-"<span class='minus'>PENJUALAN " +
-Math.abs(hasilKetPX).toFixed(2) +
-"</span>";
-
-}
-else{
-
-document.getElementById("ketSisaPX").innerHTML =
-"<span class='balance'>BALANCE</span>";
-
+  let hasilKetPL = digantungPL - totalPL;
+  let ketSisaPL = document.getElementById("ketSisaPL");
+  if (hasilKetPL > 0) {
+    ketSisaPL.innerHTML = "<span style='color:#1da462;font-weight:700'>TERSISA " + hasilKetPL.toFixed(2) + "</span>";
+    ketSisaPL.className = "hasil-display plus";
+  } else if (hasilKetPL < 0) {
+    ketSisaPL.innerHTML = "<span style='color:#e5363b;font-weight:700'>PENJUALAN " + Math.abs(hasilKetPL).toFixed(2) + "</span>";
+    ketSisaPL.className = "hasil-display minus";
+  } else {
+    ketSisaPL.innerHTML = "<span style='color:#64748b;font-weight:700'>BALANCE</span>";
+    ketSisaPL.className = "hasil-display balance";
+  }
 }
 
-/* ================= PERTALITE ================= */
-
-let stokAwalPosPL =
-parseFloat(document.getElementById("stokAwalPosPL").value) || 0;
-
-let penjualanPL =
-parseFloat(document.getElementById("penjualanPL").value) || 0;
-
-let stokAktualPL =
-parseFloat(document.getElementById("stokAktualPL").value) || 0;
-
-let stokAkhirPosPL =
-stokAwalPosPL - penjualanPL;
-
-document.getElementById("stokAkhirPosPL").innerText =
-stokAkhirPosPL.toFixed(2);
-
-let digantungPL =
-stokAktualPL - stokAkhirPosPL;
-
-document.getElementById("digantungPL").innerText =
-digantungPL.toFixed(2);
-
-document.getElementById("stokAwalSisaPL").innerText =
-stokAktualPL.toFixed(2);
-
-let stokAkhirSisaPL =
-parseFloat(document.getElementById("stokAkhirSisaPL").value) || 0;
-
-let totalPL =
-stokAktualPL - stokAkhirSisaPL;
-
-document.getElementById("totalSisaPL").innerText =
-totalPL.toFixed(2);
-
-document.getElementById("sisaGantungPL").innerText =
-digantungPL.toFixed(2);
-
-/* ================= REVISI TERBARU ================= */
-/* TERSISA & PENJUALAN */
-
-let hasilKetPL =
-digantungPL - totalPL;
-
-if(hasilKetPL > 0){
-
-document.getElementById("ketSisaPL").innerHTML =
-"<span class='plus'>TERSISA " +
-hasilKetPL.toFixed(2) +
-"</span>";
-
-}
-else if(hasilKetPL < 0){
-
-document.getElementById("ketSisaPL").innerHTML =
-"<span class='minus'>PENJUALAN " +
-Math.abs(hasilKetPL).toFixed(2) +
-"</span>";
-
-}
-else{
-
-document.getElementById("ketSisaPL").innerHTML =
-"<span class='balance'>BALANCE</span>";
-
+/* ════════════════════════════════════════════
+   EXPORT TXT (tidak diubah)
+════════════════════════════════════════════ */
+function exportTXT() {
+  const blob = new Blob(
+    ["PENERIMAAN BBM SPBU 3417603"],
+    { type: "text/plain" }
+  );
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "RANGKUMAN_BBM.txt";
+  link.click();
 }
 
+/* ════════════════════════════════════════════
+   EXPORT PDF (RAPIH)
+════════════════════════════════════════════ */
+function exportPDF() {
+  // Pastikan data terhitung terbaru
+  hitungBBM();
+
+  // Ambil data dari DOM
+  const getText = (id) => document.getElementById(id)?.innerText?.trim() || "0.00";
+  const getValue = (id) => parseFloat(document.getElementById(id)?.value) || 0;
+
+  // ====== DATA PENERIMAAN ======
+  const penerimaanBody = [
+    [
+      "PERTAMAX",
+      getValue("stokSebelumPX").toFixed(2),
+      getValue("doPX").toFixed(2),
+      getText("stokAkhirPX"),
+      getValue("stokAktualPX").toFixed(2),
+      getText("selisihPX"),
+      getText("ketPX").replace(/<[^>]*>/g, '')  // ambil teks saja
+    ],
+    [
+      "PERTALITE",
+      getValue("stokSebelumPL").toFixed(2),
+      getValue("doPL").toFixed(2),
+      getText("stokAkhirPL"),
+      getValue("stokAktualPL").toFixed(2),
+      getText("selisihPL"),
+      getText("ketPL").replace(/<[^>]*>/g, '')
+    ]
+  ];
+
+  const totalSelisihText = document.getElementById("totalSelisih").innerText.replace(/<[^>]*>/g, '').trim();
+
+  // ====== DATA GANTUNGAN ======
+  const gantunganBody = [
+    [
+      "PERTAMAX",
+      getValue("stokAwalPosPX").toFixed(2),
+      getValue("penjualanPX").toFixed(2),
+      getText("stokAkhirPosPX"),
+      getText("digantungPX")
+    ],
+    [
+      "PERTALITE",
+      getValue("stokAwalPosPL").toFixed(2),
+      getValue("penjualanPL").toFixed(2),
+      getText("stokAkhirPosPL"),
+      getText("digantungPL")
+    ]
+  ];
+
+  // ====== DATA SISA GANTUNGAN ======
+  const sisaBody = [
+    [
+      "PERTAMAX",
+      getText("stokAwalSisaPX"),
+      getValue("stokAkhirSisaPX").toFixed(2),
+      getText("totalSisaPX"),
+      getText("sisaGantungPX"),
+      getText("ketSisaPX").replace(/<[^>]*>/g, '')
+    ],
+    [
+      "PERTALITE",
+      getText("stokAwalSisaPL"),
+      getValue("stokAkhirSisaPL").toFixed(2),
+      getText("totalSisaPL"),
+      getText("sisaGantungPL"),
+      getText("ketSisaPL").replace(/<[^>]*>/g, '')
+    ]
+  ];
+
+  // ====== BUAT PDF ======
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p', 'mm', 'a4');
+  const pageWidth = pdf.internal.pageSize.getWidth();
+
+  // Header
+  pdf.setFontSize(16);
+  pdf.setTextColor(29, 78, 216);
+  pdf.text("PENERIMAAN BBM SPBU 3417603", pageWidth / 2, 20, { align: 'center' });
+  pdf.setFontSize(10);
+  pdf.setTextColor(100);
+  pdf.text("Sistem Monitoring BBM | Tanggal: " + new Date().toLocaleDateString('id-ID'), pageWidth / 2, 28, { align: 'center' });
+  pdf.setDrawColor(29, 78, 216);
+  pdf.line(14, 32, pageWidth - 14, 32);
+
+  let yPos = 38;
+
+  // --- Section 1: Penerimaan BBM ---
+  pdf.setFontSize(12);
+  pdf.setTextColor(29, 78, 216);
+  pdf.text("PENERIMAAN BBM", 14, yPos);
+  yPos += 6;
+  pdf.autoTable({
+    startY: yPos,
+    head: [['PRODUK', 'STOK AWAL', 'DO', 'STOK AKHIR', 'STOK AKTUAL', 'SELISIH', 'KETERANGAN']],
+    body: penerimaanBody,
+    theme: 'grid',
+    headStyles: { fillColor: [29, 78, 216], textColor: 255, fontSize: 9, halign: 'center' },
+    bodyStyles: { fontSize: 9, halign: 'center', textColor: 30 },
+    columnStyles: {
+      0: { halign: 'left' },
+      6: { halign: 'left' }
+    }
+  });
+  yPos = pdf.lastAutoTable.finalY + 8;
+  pdf.setFontSize(10);
+  pdf.setTextColor(80);
+  pdf.text("TOTAL SELISIH: " + totalSelisihText, 14, yPos);
+  yPos += 10;
+
+  // --- Section 2: Gantungan POS ---
+  pdf.setFontSize(12);
+  pdf.setTextColor(29, 78, 216);
+  pdf.text("GANTUNGAN POS SYSTEM", 14, yPos);
+  yPos += 6;
+  pdf.autoTable({
+    startY: yPos,
+    head: [['PRODUK', 'STOK AWAL', 'PENJUALAN', 'STOK AKHIR', 'DIGANTUNG']],
+    body: gantunganBody,
+    theme: 'grid',
+    headStyles: { fillColor: [29, 78, 216], textColor: 255, fontSize: 9, halign: 'center' },
+    bodyStyles: { fontSize: 9, halign: 'center' },
+    columnStyles: { 0: { halign: 'left' } }
+  });
+  yPos = pdf.lastAutoTable.finalY + 10;
+
+  // --- Section 3: Sisa Gantungan ---
+  pdf.setFontSize(12);
+  pdf.setTextColor(29, 78, 216);
+  pdf.text("SISA GANTUNGAN", 14, yPos);
+  yPos += 6;
+  pdf.autoTable({
+    startY: yPos,
+    head: [['PRODUK', 'STOK AWAL', 'STOK AKHIR', 'TOTAL', 'SISA GANTUNGAN', 'KETERANGAN']],
+    body: sisaBody,
+    theme: 'grid',
+    headStyles: { fillColor: [29, 78, 216], textColor: 255, fontSize: 9, halign: 'center' },
+    bodyStyles: { fontSize: 9, halign: 'center' },
+    columnStyles: { 0: { halign: 'left' }, 5: { halign: 'left' } }
+  });
+
+  // Footer
+  const pageCount = pdf.internal.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    pdf.setPage(i);
+    pdf.setFontSize(8);
+    pdf.setTextColor(150);
+    pdf.text("SPBU 3417603 - Penerimaan BBM | Hal " + i + " dari " + pageCount, pageWidth / 2, 290, { align: 'center' });
+  }
+
+  pdf.save("Penerimaan_BBM_SPBU3417603.pdf");
 }
 
-/* ================= EXPORT TXT ================= */
-
-function exportTXT(){
-
-const blob =
-new Blob(
-["PENERIMAAN BBM SPBU 3417603"],
-{type:"text/plain"}
-);
-
-const link =
-document.createElement("a");
-
-link.href =
-URL.createObjectURL(blob);
-
-link.download =
-"RANGKUMAN_BBM.txt";
-
-link.click();
-
+/* ════════════════════════════════════════════
+   EXPORT GAMBAR (tidak diubah)
+════════════════════════════════════════════ */
+async function exportImage() {
+  const canvas = await html2canvas(document.body);
+  const image = canvas.toDataURL("image/png");
+  const link = document.createElement("a");
+  link.href = image;
+  link.download = "RANGKUMAN_BBM.png";
+  link.click();
 }
 
-/* ================= EXPORT PDF ================= */
-
-function exportPDF(){
-
-const { jsPDF } = window.jspdf;
-
-const pdf =
-new jsPDF();
-
-pdf.text(
-"PENERIMAAN BBM SPBU 3417603",
-20,
-20
-);
-
-pdf.save("RANGKUMAN_BBM.pdf");
-
-}
-
-/* ================= EXPORT GAMBAR ================= */
-
-async function exportImage(){
-
-const canvas =
-await html2canvas(document.body);
-
-const image =
-canvas.toDataURL("image/png");
-
-const link =
-document.createElement("a");
-
-link.href = image;
-
-link.download =
-"RANGKUMAN_BBM.png";
-
-link.click();
-
-}
-
+/* ════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  loadData();
+  hitungBBM();
+});
 </script>
 
 </body>
